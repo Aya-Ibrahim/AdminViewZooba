@@ -51,14 +51,13 @@ Handler handler=new Handler();
 //     vehicles.add("e2");
 //     vehicles.add("e2");
      
-     List<Make> listmakes=handler.getVehicle();
+//     List<Make> listmakes=handler.getVehicle();
     
-     vehicles=new ArrayList<>(listmakes);
-        data=new ListDataModel(vehicles) ;
-//      
-System.out.println("vehicles : "+listmakes.get(0));
+//     vehicles=new ArrayList<>(listmakes);
+//        data=new ListDataModel(vehicles) ;
+////      
+//System.out.println("vehicles : "+listmakes.get(0));
         }
-    
     
     }
     
