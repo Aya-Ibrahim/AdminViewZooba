@@ -5,7 +5,7 @@
  */
 package bean;
 
-import controller.Handler;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -15,6 +15,7 @@ import javax.faces.model.ArrayDataModel;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import pojo.Make;
+import webServicesHandlers.Handler;
 
 /**
  *
