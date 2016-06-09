@@ -1,222 +1,132 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="../template/AdminTemplate.xhtml">
-                <!-- END X-NAVIGATION VERTICAL -->                     
+        <!-- END X-NAVIGATION VERTICAL -->                     
 
-     <ui:define name="myBody">
-                <!-- END X-NAVIGATION VERTICAL -->                   
-                
-                <!-- START BREADCRUMB --> 
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Forms Stuff</a></li>
-                    <li><a href="#">Form Layout</a></li>
-                    <li class="active">One Column</li>
-                </ul>
-                <!-- END BREADCRUMB -->
-                
-                <!-- PAGE CONTENT WRAPPER -->
-                <div class="page-content-wrap">
-                
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <h:form class="form-horizontal">
+        <ui:define name="myBody">
+            <!-- END X-NAVIGATION VERTICAL -->                   
+
+            <!-- START BREADCRUMB -->
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Forms Stuff</a></li>
+                <li><a href="#">Form Layout</a></li>
+                <li class="active">One Column</li>
+            </ul>
+            <!-- END BREADCRUMB -->
+
+            <!-- PAGE CONTENT WRAPPER -->
+            <div class="page-content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h:form class="form-horizontal">
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>Add Make</strong></h3>
-                                    <ul class="panel-controls">
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>
+                                <div class="panel-body">  
+                                    <p:accordionPanel activeIndex="">
+                                        <p:tab  title="Add By WebService" titleStyleClass="accordion-title" >
+                                            <h:form prependId="false">
+                                                <p:growl id="msgs" showDetail="true" />
+                                                <p:panel>
+                                                    <h:panelGrid columns="2" >
+                                                        <p:outputLabel for="years" value="Year:   " />
+                                                        <p:selectOneMenu id="years" value="#{dropDownService.selectedYear}">
+                                                            <p:ajax listener="#{dropDownService.showMakes()}" update="makes" />
+                                                            <f:selectItem itemLabel="Select Year" itemValue="" noSelectionOption="true" />
+                                                            <f:selectItems value="#{dropDownService.myYears}" var="year"
+                                                                           itemLabel="#{year}" itemValue="#{year}" />
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel for="makes" value="Make:   " />
+                                                        <p:selectOneMenu id="makes" value="#{dropDownService.selectedMake}"  >
+                                                            <p:ajax listener="#{dropDownService.showModels()}" update="models" />
+                                                            <f:selectItem itemLabel="Select Make" itemValue="" noSelectionOption="true" />
+                                                            <f:selectItems value="#{dropDownService.dMake}" var="make"
+                                                                           itemLabel="#{make.make_display}" itemValue="#{model.make_display}"/>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel for="models" value="Model:   " />
+                                                        <p:selectOneMenu id="models" value="#{dropDownService.selectedModel}" >
+                                                            <p:ajax listener="#{dropDownService.showTrims()}" update="trims" />
+                                                            <f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="true" />
+                                                            <f:selectItems value="#{dropDownService.dModel}"  var="model"
+                                                                           itemLabel="#{model.model_name}" itemValue="#{model.model_name}"/>
+                                                        </p:selectOneMenu>
+                                                        <p:outputLabel for="trims" value="Trim:   " />
+                                                        <p:selectOneMenu id="trims" value="#{dropDownService.selectedTrim}" >
+                                                            <f:selectItem itemLabel="Select Trim" itemValue="" noSelectionOption="true" />
+                                                            <f:selectItems value="#{dropDownService.dTrim}" var="trim"
+                                                                           itemLabel="#{trim.model_trim}" itemValue="#{trim.model_trim}"/>
+                                                        </p:selectOneMenu>
+                                                    </h:panelGrid>
+                                                    <p:separator />
+                                                    <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" />
+                                                </p:panel>
+                                            </h:form>
+                                        </p:tab>
+                                    </p:accordionPanel>
                                 </div>
-                               <!-- <div class="panel-body">
-                                    <p>This is non libero bibendum, scelerisque arcu id, placerat nunc. Integer ullamcorper rutrum dui eget porta. Fusce enim dui, pulvinar a augue nec, dapibus hendrerit mauris. Praesent efficitur, elit non convallis faucibus, enim sapien suscipit mi, sit amet fringilla felis arcu id sem. Phasellus semper felis in odio convallis, et venenatis nisl posuere. Morbi non aliquet magna, a consectetur risus. Vivamus quis tellus eros. Nulla sagittis nisi sit amet orci consectetur laoreet. Vivamus volutpat erat ac vulputate laoreet. Phasellus eu ipsum massa.</p>
-                                </div>-->
-                                <div class="panel-body">                                                                        
-                                    
+                                <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Make Name</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Year</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <p:autoComplete value="#{serviceByInput.yearSelected}" completeMethod="#{serviceByInput.getYears}"/>
                                             </div>                                            
-                                            
+
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Make Country</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Make</label>
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                <input type="password" class="form-control"/>
+                                                <p:autoComplete value="#{serviceByInput.makeSelected}" completeMethod="#{serviceByInput.getMakes}"/>
                                             </div>            
-                                           
+
                                         </div>
                                     </div>
-                                      <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Year</label>
+
+                                    <div class="form-group">                                        
+                                        <label class="col-md-3 col-xs-12 control-label">Model</label>
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                               <select name="year">
-                                                      <option value="2012">2012</option>
-                                                      <option value="2013">2013</option>
-                                                      <option value="2014">2014</option>
-                                                        <option value="2015">2015</option>
-                                               </select>
-                                                <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="width:125px">
-            <f:selectItem itemLabel="Select One" itemValue="" />
-            <f:selectItem itemLabel="2012" itemValue="2012" />
-            <f:selectItem itemLabel="2013" itemValue="2013" />
-            <f:selectItem itemLabel="2014" itemValue="2014" />
-        </p:selectOneMenu>
-                                            </div>            
-                                           
+                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                <p:autoComplete value="#{serviceByInput.modelSelected}" completeMethod="#{serviceByInput.getModels}"/>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <center>
-                                      <p:commandButton value="Model" type="button" onclick="PF('dlg1').show();" />
-                                    <p:commandButton value="Trim" type="button" onclick="PF('dlg2').show();" />
-                                     
-                              
-                                    </center>
-                                <p:dialog header="Supported Car" draggable="false" modal="true" widgetVar="dlg1" showEffect="explode" hideEffect="explode" height="200" width="500">
-                                    <h:form >
-                                        <p:growl id="msgs"   />
-
-                                        <p:panel style="border-style: none">
-                                            <h:panelGrid columns="2" cellpadding="5">
-                                    <p:outputLabel for="basic" value="Model" />
-        <p:selectOneListbox id="basic" value="#{selectOneView.option}">
-            <f:selectItem itemLabel="model 1" itemValue="1" />
-            <f:selectItem itemLabel="model 2" itemValue="2" />
-            <f:selectItem itemLabel="model 3" itemValue="3" />
-        </p:selectOneListbox>
-                                            </h:panelGrid>
-
-                                            <p:separator />
-                                            <p:inputText /><i class="fa fa-plus-square  fa-fw" aria-hidden="true"></i> Add new Model
-                                    <p:separator />
-                                    <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
-                                        </p:panel>
-                                    </h:form>
-                                </p:dialog>
-                             <p:dialog header="Supported Car" draggable="false" modal="true" widgetVar="dlg2" showEffect="explode" hideEffect="explode" height="200" width="500">
-                                    <h:form >
-                                        <p:growl id="msgs"   />
-
-                                        <p:panel style="border-style: none">
-                                            <h:panelGrid columns="2" cellpadding="5">
-                                    <p:outputLabel for="basic" value="Model" />
-        <p:selectOneListbox id="basic" value="#{selectOneView.option}">
-            <f:selectItem itemLabel="trim 1" itemValue="1" />
-            <f:selectItem itemLabel="trim 2" itemValue="2" />
-            <f:selectItem itemLabel="trim 3" itemValue="3" />
-        </p:selectOneListbox>
-                                            </h:panelGrid>
-
-                                            <p:separator />
-                                            <p:inputText /><i class="fa fa-plus-square  fa-fw" aria-hidden="true"></i> Add new trim
-                                    <p:separator />
-                                    <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
-                                        </p:panel>
-                                    </h:form>
-                                </p:dialog>
+                                    <div class="form-group">                                        
+                                        <label class="col-md-3 col-xs-12 control-label">Trim</label>
+                                        <div class="col-md-6 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                <p:inputText type="text" value="#{serviceByInput.trimSelected}"/>                                            
+                                            </div>
+                                        </div>
+                                        <p:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}" icon="ui-icon-check" />
+                                        <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
                                     <button class="btn btn-default">Clear Form</button>                                    
                                     <button class="btn btn-primary pull-right">Submit</button>
                                 </div>
                             </div>
-                            </h:form>
-                            
-                        </div>
-                    </div>                    
-                    <div class="row">
-                        <div class="col-md-12">
-                                  <div class="block">
-                                <h4>jQuery Validation</h4>
-                                <form id="jvalidate" role="form" class="form-horizontal" action="javascript:alert('Form #validate2 submited');">
-                                <div class="panel-body">                                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Login:</label>  
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="login"/>
-                                            <span class="help-block">min size = 2, max size = 8</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Password:</label>                                        
-                                        <div class="col-md-9">
-                                            <input type="password" class="form-control" name="password" id="password2"/>                                        
-                                            <span class="help-block">min size = 5, max size = 10</span>
-                                        </div>
-                                    </div>                    
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Confirm Password:</label>                                       
-                                        <div class="col-md-9">
-                                            <input type="password" class="form-control" name="re-password"/>
-                                            <span class="help-block">required same value as Password</span>
-                                        </div>
-                                    </div>               
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">E-mail:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value="" name="email" class="form-control"/>                                        
-                                            <span class="help-block">required email</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 control-label">Age:</label>          
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="age"/>                                        
-                                            <span class="help-block">min size = 18, max size = 100</span>
-                                        </div>
-                                    </div>                                                             
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Date of birth:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control datepicker" name="date"/>
-                                            <span class="help-block">required date</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Credit card:</label>     
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="credit"/>
-                                            <span class="help-block">required credit card</span>
-                                        </div>
-                                    </div>             
-                                    <div class="form-group">
-                                        <label class="col-md-3 control-label">Site:</label>
-                                        <div class="col-md-9">
-                                            <input type="text" value="http://" name="site" class="form-control"/>  
-                                            <span class="help-block">required url</span>
-                                        </div>
-                                    </div>                                                                                        
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-primary" type="button" onClick="jvalidate.resetForm();$('#gender').next('.bootstrap-select').removeClass('error').removeClass('valid')">Hide prompts</button>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>                                                                                                                          
-                                </div>                                               
-                                </form>
-                            <!-- END JQUERY VALIDATION PLUGIN -->
-                            </div>
-                        </div>
+                        </h:form>
                     </div>
-                </div>
-                <!-- END PAGE CONTENT WRAPPER -->                                                
-           
-        <!-- MESSAGE BOX-->
-   
-     </ui:define>
+                </div>                    
+            </div>
+            <!-- END PAGE CONTENT WRAPPER -->                                                
+
+            <!-- MESSAGE BOX-->
+
+        </ui:define>
     </ui:composition>
 
-        
+
 </html>
