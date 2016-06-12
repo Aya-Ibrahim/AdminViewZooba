@@ -22,7 +22,7 @@
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
         
         <p:column headerText="Vehicle Name" >
-            <h:outputText value="#{car[5]}" />
+            <h:outputText value="#{car[0]}" />
         </p:column>
         <p:column headerText="Manufacturer">
             <h:outputText value="#{car[4]}" />
@@ -44,6 +44,10 @@
         <p:column headerText="Delete">
             <h:commandButton value="Delete" 
                                 action="#{vehicle.deleteVehicle(car[0])}">
+               </h:commandButton>
+        </p:column>
+         <p:column headerText="Edit">
+            <h:commandButton value="Edit" >
                </h:commandButton>
         </p:column>
        
