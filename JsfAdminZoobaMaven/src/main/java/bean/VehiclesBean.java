@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -32,7 +33,7 @@ public class VehiclesBean implements Serializable{
  DataLayer handler=new DataLayer();
  private String name;
  private String action;
- private transient DataModel<Object[]> model=new ListDataModel<>(handler.getVehicles());
+ private transient DataModel<VehicleModel> model=new ListDataModel<>(handler.getVehicles());
  private transient DataModel<ModelFeaturesValues> list=new ListDataModel<>();
 
     public DataModel<ModelFeaturesValues> getList() {
@@ -42,15 +43,15 @@ public class VehiclesBean implements Serializable{
     public void setList(DataModel<ModelFeaturesValues> list) {
         this.list = list;
     }
-    
-    public DataModel<Object[]> getModel() {
+
+    public DataModel<VehicleModel> getModel() {
         return model;
     }
 
-    public void setModel(DataModel<Object[]> model) {
+    public void setModel(DataModel<VehicleModel> model) {
         this.model = model;
     }
-
+    
     
     public String getName() {
         return name;
@@ -67,14 +68,21 @@ public class VehiclesBean implements Serializable{
     public void setVehicles(ArrayList<String> vehicles) {
         this.vehicles = vehicles;
     }
-    public void deleteVehicle(String name) {
+    public void deleteVehicle(int id) {
       
-        handler.deleteVehicle(name);
+        boolean flag=handler.deleteVehicle(id);
+        if(!flag)
+        {
+//          FacesContext context = FacesContext.getCurrentInstance();
+//          context.addMessage( null, new FacesMessage( "This vehicle model is associated to a car" ));  
+        }
+        else{
         model=new ListDataModel<>(handler.getVehicles());
+        }
     }
     
     public String showPage()
-    {
+    {   
         Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         action = params.get("id");
         System.out.println("Hellooooooo"+action);

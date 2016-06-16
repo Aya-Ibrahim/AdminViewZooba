@@ -21,38 +21,37 @@
     <p:dataTable var="car" value="#{vehicle.model}" paginator="true" rows="10"
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
         
-        <p:column headerText="Vehicle Name" >
-            <h:outputText value="#{car[0]}" />
-        </p:column>
-        <p:column headerText="Manufacturer">
-            <h:outputText value="#{car[4]}" />
+        <p:column headerText="Manufacturer" >
+            <h:outputText value="#{car.model.make.name}" />
         </p:column>
         <p:column headerText="Model">
-            <h:outputText value="#{car[3].name}" />
+            <h:outputText value="#{car.model.name}" />
         </p:column>
          <p:column headerText="Year">
-            <h:outputText value="#{car[1].name}" />
+             <h:outputText value="#{car.year.name}" />
         </p:column>
         <p:column headerText="Trim">
-            <h:outputText value="#{car[2].name}" />
+            <h:outputText value="#{car.trim.name}" />
         </p:column>
          <p:column headerText="Show Features">
              <h:commandButton value="Show Features" action="#{vehicle.showPage}">
-                 <f:param name="id" value="#{car[5]}"/>
+                 <f:param name="id" value="#{car.id}"/>
+               </h:commandButton>
+        </p:column>
+         <p:column headerText="Edit">
+             <h:commandButton value="Edit"  action="#{vehiclemodel.goToEdit}">
+                 <f:param name="id" value="#{car.id}"/>
                </h:commandButton>
         </p:column>
         <p:column headerText="Delete">
             <h:commandButton value="Delete" 
-                                action="#{vehicle.deleteVehicle(car[0])}">
+                             action="#{vehicle.deleteVehicle(car.id)}">
                </h:commandButton>
-        </p:column>
-         <p:column headerText="Edit">
-            <h:commandButton value="Edit" >
-               </h:commandButton>
-        </p:column>
-       
+           
+        </p:column>   
     </p:dataTable>
    </h:form>
     </h:body>
 </ui:composition>
+
 
