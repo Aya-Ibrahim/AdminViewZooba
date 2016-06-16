@@ -70,6 +70,11 @@
             <artifactId>ursus-example-jersey-client</artifactId>
             <version>0.2.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>4.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
