@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="template/AdminTemplate.xhtml">
+                <!-- END X-NAVIGATION VERTICAL -->                     
+
+     <ui:define name="myBody">
+                <!-- END X-NAVIGATION VERTICAL -->                   
+          <!-- START PAGE CONTAINER -->
+        
+                <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li class="active">Cars</li>
+                </ul>
+                <!-- END BREADCRUMB -->                                                
+                
+                <!-- PAGE TITLE -->
+                <div class="page-title">                    
+                    <h2><span class="fa fa-users"></span> Car Details <small>139 Cars </small></h2>
+                </div>
+                <!-- END PAGE TITLE -->                
+                
+                <!-- PAGE CONTENT WRAPPER -->
+                <ui:include src="testFeatures.xhtml" />
+                <!-- END PAGE CONTENT WRAPPER -->                                                 
+     
+     </ui:define>
+    </ui:composition>
+
+        
+</html>
+
+
+
+
+
+
