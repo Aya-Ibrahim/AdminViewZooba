@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="../template/AdminTemplate.xhtml">
+        <!-- END X-NAVIGATION VERTICAL -->                     
+
+        <ui:define name="myBody">
+            <div class="page-content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h:form class="form-horizontal">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">name</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <p:inputText type="text" value="#{addSerivceProviderBean.name}" />
+                                            </div>                                            
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">email</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <p:inputText id="email" type="text" value="#{addSerivceProviderBean.email}" validatorMessage="Invalid email format">
+                                                    <f:validateRegex
+                                                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                                </p:inputText>
+                                            </div>                                            
+                                            <p:message for="email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 col-xs-12 control-label">website</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <p:inputText id="webSite" type="text" value="#{addSerivceProviderBean.webSite}" validatorMessage="Invalid URL format">
+                                                    <!--<f:validateRegex pattern="(http|https):\\/\\/[A-Za-z\\.]*\\.(com|org|net)" />-->
+                                                </p:inputText>
+                                            </div>                                            
+                                            <p:message for="webSite"/>
+                                            <h:commandButton value="Save" action="#{addSerivceProviderBean.toEditPage()}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

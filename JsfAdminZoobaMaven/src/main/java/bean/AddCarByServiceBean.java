@@ -13,9 +13,11 @@ import dao.CarFeaturesDao;
 import dao.ModelFeatureValueDao;
 import facadePkg.DataLayer;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,10 +42,9 @@ import pojo.Year;
  *
  * @author Ehab
  */
-
 @ManagedBean(name = "dropDownService")
 @SessionScoped
-public class AddCarByServiceBean implements Serializable{
+public class AddCarByServiceBean implements Serializable {
 
     MakesBean m;
     ModelsBean model;
@@ -201,21 +202,25 @@ public class AddCarByServiceBean implements Serializable{
 
     public void showTrims() {
 
-        ClientConfig config = new ClientConfig();
+        try {
+            ClientConfig config = new ClientConfig();
 
-        Client client = ClientBuilder.newClient(config);
+            Client client = ClientBuilder.newClient(config);
 
-        WebTarget target = client.target("http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=" + selectedMake + "&model=" + selectedModel + "&year=" + selectedYear);
+            WebTarget target = client.target("http://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=" + selectedMake + "&model=" + URLEncoder.encode(selectedModel, "UTF-8") + "&year=" + selectedYear);
 
-        String response = target.request().accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
+            String response = target.request().accept(MediaType.APPLICATION_JSON_TYPE).get(String.class);
 
-        String jsonString = response.substring(3, response.length() - 2);
+            String jsonString = response.substring(3, response.length() - 2);
 
-        Gson gson = new Gson();
+            Gson gson = new Gson();
 
-        trim = gson.fromJson(jsonString, TrimsBean.class);
+            trim = gson.fromJson(jsonString, TrimsBean.class);
 
-        dTrim = trim.Trims;
+            dTrim = trim.Trims;
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(AddCarByServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -283,6 +288,26 @@ public class AddCarByServiceBean implements Serializable{
             }
         }
 
+    }
+
+    public void insertAll() {
+        showYears();
+        for (String year : myYears) {
+            selectedYear = year;
+            showMakes();
+            for (DtoMake make : dMake) {
+                selectedMake = make.getMake_id();
+                showModels();
+                for (DtoModel model : dModel) {
+                    selectedModel = model.getModel_name();
+                    showTrims();
+                    for (DtoTrim trim : dTrim) {
+                        selectedTrim = trim.getModel_trim();
+                        insertVehicle();
+                    }
+                }
+            }
+        }
     }
 
     public void sendMail() {
