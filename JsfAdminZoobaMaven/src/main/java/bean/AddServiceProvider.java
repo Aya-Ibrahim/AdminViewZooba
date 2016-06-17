@@ -72,7 +72,7 @@ public class AddServiceProvider {
 
         editProviderDetailsBean.setServiceProvider(serviceProvider);
 
-        return "Edit-ServiceCenter";
+        return "EditServiceProvider";
     }
 
 }
