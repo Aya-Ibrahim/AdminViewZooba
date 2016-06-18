@@ -10,11 +10,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
 
-        <!-- CSS INCLUDE -->        
+        <!-- CSS INCLUDE --> 
+        <h:outputScript  name="js/gmapScript.js"/>
         <h:outputStylesheet library="css" name="fontawesome/font-awesome.min.css"/>
         <h:outputStylesheet library="css" name="bootstrap/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css"/>
@@ -31,7 +33,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="index.html">Joli Admin</a>
+                        <a href="index.html">Admin </a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -53,9 +55,6 @@
                         </div>                                                                        
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li >
-                       
-                    </li>
                     <li class="active">
                         <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>                        
                     </li>                    
@@ -263,28 +262,28 @@
         <!-- END PAGE CONTAINER -->
 
         <!-- MESSAGE BOX-->
-         <h:form>
-        <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-            <div class="mb-container">
-                <div class="mb-middle">
-                    <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-                    <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
-                        <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-                    </div>
-                    
-                    <div class="mb-footer">
-                        <div class="pull-right">
-                        <!--    <a href="/CarcareAdminn/faces/restricted/index1.xhtml" class="btn btn-success btn-lg" >Yes</a>-->
-                        <h:commandButton   value="Yes" class="btn btn-success btn-lg" action="#{bean.logout}"></h:commandButton>
-                        <h:commandButton   value="No" class="btn btn-default btn-lg mb-control-close"></h:commandButton>
+        <h:form>
+            <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+                <div class="mb-container">
+                    <div class="mb-middle">
+                        <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                        <div class="mb-content">
+                            <p>Are you sure you want to log out?</p>                    
+                            <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
                         </div>
+
+                        <div class="mb-footer">
+                            <div class="pull-right">
+                                <!--    <a href="/CarcareAdminn/faces/restricted/index1.xhtml" class="btn btn-success btn-lg" >Yes</a>-->
+                                <h:commandButton   value="Yes" class="btn btn-success btn-lg" action="#{bean.logout}"></h:commandButton>
+                                <h:commandButton   value="No" class="btn btn-default btn-lg mb-control-close"></h:commandButton>
+                            </div>
+                        </div>
+
                     </div>
-                    
                 </div>
             </div>
-        </div>
-            </h:form>
+        </h:form>
         <!-- END MESSAGE BOX-->
 
         <!-- START PRELOADS -->
@@ -295,7 +294,7 @@
         <!-- START SCRIPTS -->
 
         <!-- START PLUGINS -->
-        
+
         <!-- END PLUGINS -->
 
         <!-- START THIS PAGE PLUGINS--> 
@@ -328,7 +327,7 @@
 
         <h:outputScript  name="js/plugins.js"/>   
         <h:outputScript  name="js/actions.js"/>
-
+        
         <h:outputScript  name="js/demo_dashboard.js"/>
         <script type="text/javascript">
             var jvalidate = $("#jvalidate").validate({

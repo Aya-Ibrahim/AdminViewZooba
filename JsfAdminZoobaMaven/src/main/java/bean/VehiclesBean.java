@@ -92,7 +92,7 @@ public class VehiclesBean implements Serializable{
     }
    public void updateFeatures(ModelFeaturesValues m)
    {
-       handler.update(m);
+       handler.updateModelFeatureValues(m);
        int n=Integer.parseInt(action);
        list=new ListDataModel<>(handler.showFeatures(n));
    }
