@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>        
+        <!-- META SECTION -->
+        <title>Joli Admin - Responsive Bootstrap Admin Template</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+
+        <!-- CSS INCLUDE --> 
+        <h:outputScript  name="js/gmapScript.js"/>
+        <h:outputStylesheet library="css" name="fontawesome/font-awesome.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css"/>
+
+        <!-- EOF CSS INCLUDE -->                                    
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:selectOneMenu id="years" value="">
+                <f:selectItem itemLabel="Select Year" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{serviceprovider.serviceNames}" var="year" />
+            </p:selectOneMenu>
+            <p:commandButton value="Save Phone" class="btn btn-primary " action="#{serviceprovider.showMakesPage()}" />
+                              
+        </h:form>
+
+        <!-- START THIS PAGE PLUGINS--> 
+
+    </h:body>
+</html>
