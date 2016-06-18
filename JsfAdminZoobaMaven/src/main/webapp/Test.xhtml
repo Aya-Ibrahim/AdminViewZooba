@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            .ui-accordion
+            {
+                width: 200px;
+                padding-top: 330px;
+                padding-left: 20px;
+                border-color: #000;
+                
+            }
+            .ui-accordion .ui-accordion-content {
+                padding: 5px;
+                color: white;
+                background: #000;
+                font-size: small;
+            }
+
+            .ui-accordion-header 
+            {
+                background: #080a0e;
+                color: #8b91a0;
+                font-size: small;
+
+            }
+            .ui-state-active
+            {
+                background: #1caf9a;
+                color: white;
+
+
+            }
+            #first #serviceoccordion .ui-accordion
+            {
+                width: 200px;
+            }
+           #first #serviceoccordion .ui-accordion .ui-accordion-content {
+                padding: 5px;
+                color: white;
+                background: #000;
+                font-size: small;
+            }
+
+           #first #serviceoccordion .ui-accordion-header 
+            {
+                background: #080a0e;
+                color: #8b91a0;
+                font-size: small;
+
+            }
+            #first #serviceoccordion .ui-state-active
+            {
+                background: #0aa;
+                color: white;
+
+
+            }
+        </style>
+       
+    </h:head>
+    <h:body>
+        <div style="width: 200px;">
+            <h:form id="form1" prependId="false"> 
+
+                <p:accordionPanel activeIndex="0" id="first"> ̰
+                    <p:tab title="Service Providers">
+                        <h:panelGrid>
+                            <h:outputLink value="AddServiceProvider.xhtml" >Add Service Provider</h:outputLink>
+                       <br/> <h:outputLink value="ShowServiceProviders.xhtml" >Show Service Providers</h:outputLink>
+                    </h:panelGrid>
+                     
+                     
+                    </p:tab>
+                     <p:tab title="Services">
+                      <h:panelGrid>
+                          <h:outputLink value="AddService.xhtml">Add Service</h:outputLink>
+                      <br/> <h:outputLink value="ShowServices.xhtml">Show Services</h:outputLink>
+                      </h:panelGrid>
+                    </p:tab> 
+                    <p:tab title="Vehicles">
+                        <h:panelGrid>
+                        <h:outputLink value="AddVehicle.xhtml">Add Vehicle</h:outputLink>
+                    <br/>   <h:outputLink value="ShowVehicles.xhtml">Show Vehicles</h:outputLink>
+                    </h:panelGrid>
+                    </p:tab>
+                     <p:tab title="Users">
+                         <h:outputLink value="ShowUsers.xhtml">Show Users</h:outputLink>
+                    
+                    </p:tab>
+                </p:accordionPanel>
+            </h:form> 
+        </div>
+         <script>
+           
+        $(document).ready(function() {
+    $("#form1 #first h3 span.ui-icon").removeClass( "ui-icon-triangle-1-s" ).addClass( "ui-icon-plus" );
+    
+});
+
+        </script>
+    </h:body>
+</ui:composition>
+

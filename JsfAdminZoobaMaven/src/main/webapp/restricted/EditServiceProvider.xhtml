@@ -80,7 +80,7 @@
                                             <div class="col-md-6 col-xs-12">                                            
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderDetailsBean.longitude}"/>
+                                                    <p:inputText id="longitudePF" type="text" value="#{editProviderDetailsBean.longitude}"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,31 +89,30 @@
                                             <div class="col-md-6 col-xs-12">                                            
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderDetailsBean.latitude}"/>
+                                                    <p:inputText id="latitudePF" type="text" value="#{editProviderDetailsBean.latitude}"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </p:column>
                                     <p:column>
                                         <div id="mapholder"></div>
-                                        <p:commandButton onclick="getLocation()">Get My Position</p:commandButton>
+                                        <button onclick="getLocation()" type="button">Pick From Map</button>
+                                        <br/>
                                         Latitude:<input type="text" id="lat" />
                                         <br/>
                                         Longitude: <input type="text" id="lon"/>
-                                        <p:commandButton onclick="getThisLocation()">Get this Position</p:commandButton>
-                                        <p:dialog id="dlg" showEffect="fade">
+                                        <button onclick="" type="button">Get this Position</button>
+                                        <p:dialog id="dlg" showEffect="fade" closable="false">
                                             <h:panelGrid columns="2">
                                                 <h:outputLabel for="title" value="Title:" />
                                                 <p:inputText id="title" value="#{mapBean.title}" />
-
                                                 <f:facet name="footer">
                                                     <p:commandButton value="Add" oncomplete="markerAddComplete()" />
                                                     <p:commandButton value="Cancel" onclick="return cancel()" />
                                                 </f:facet>
                                             </h:panelGrid>
-
                                             <h:inputHidden id="lat" value="#{mapBean.lat}" />
-                                            <h:inputHidden id="lng" value="#{mapBean.lng}" />
+                                            <h:inputHidden id="lon" value="#{mapBean.lng}" />
                                         </p:dialog>
                                         <script>
                                             var newMarker = null;
@@ -167,6 +166,17 @@
                                                 };
                                                 var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
                                                 var marker = new google.maps.Marker({position: latlon, map: map, title: "You are here!"});
+                                                map.addListener('click', function (e) {
+                                                    placeMarkerAndPanTo(e.latLng, map);
+                                                });
+                                            }
+                                            function setPosition(position)
+                                            {
+                                                lat = position.coords.latitude;
+                                                lon = position.coords.longitude;
+                                                document.getElementById("lat").value = lat;
+                                                document.getElementById("lon").value = lon;
+
                                             }
 
                                             function showError(error)
@@ -193,41 +203,29 @@
                                                     position: latLng,
                                                     map: map
                                                 });
-                                                var title = document.getElementById('title');
-                                                newMarker.setTitle(title.value);
-                                                title.value = "";
-                                                getLocation();
-                                                
-                                                map.panTo(latLng);
-
-                                            }
-
-                                            function handlePointClick(event) {
-                                                if (currentMarker === null) {
-                                                    document.getElementById("lat").value = event.latLon.lat();
-                                                    document.getElementById("lon").value = event.latLon.lng();
-
-                                                    currentMarker = new google.maps.Marker({
-                                                        position: new google.maps.LatLng(event.latLon.lat(), event.latLon.lng())
-                                                    });
-
-                                                    PF('map').addOverlay(currentMarker);
-
-                                                    PF('dlg').show();
+                                                if (navigator.geolocation)
+                                                {
+                                                    navigator.geolocation.getCurrentPosition(setPosition, showError);
+                                                } else {
+                                                    x.innerHTML = "Geolocation is not supported by this browser.";
                                                 }
+                                                map.panTo(latLng);
                                             }
                                             function markerAddComplete() {
                                                 var title = document.getElementById('title');
-                                                currentMarker.setTitle(title.value);
+                                                newMarker.setTitle(title.value);
                                                 title.value = "";
-
-                                                currentMarker = null;
-                                                PF('dlg').hide();
+                                                newMarker = null;
+                                                $("#dlg").hide();
+                                                hLat = document.getElementById("lat").value;
+                                                hLon = document.getElementById("lon").value;
+                                                jQuery('#longitudePF').val(hLon);
+                                                jQuery('#latitudePF').val(hLat);
                                             }
                                             function cancel() {
-                                                PF('dlg').hide();
-                                                currentMarker.setMap(null);
-                                                currentMarker = null;
+                                                $("#dlg").hide();
+                                                newMarker.setMap(null);
+                                                newMarker = null;
 
                                                 return false;
                                             }

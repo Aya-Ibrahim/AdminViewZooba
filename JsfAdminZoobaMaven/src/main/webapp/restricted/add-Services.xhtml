@@ -1,193 +1,78 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-       xmlns:p="http://primefaces.org/ui" 
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pe="http://primefaces.org/ui/extensions">
     <ui:composition template="../template/AdminTemplate.xhtml">
-                <!-- END X-NAVIGATION VERTICAL -->                     
-
-     <ui:define name="myBody">
-                <!-- END X-NAVIGATION VERTICAL -->                   
-                
-                <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Forms Stuff</a></li>
-                    <li><a href="#">Form Layout</a></li>
-                    <li class="active">One Column</li>
-                </ul>
-                <!-- END BREADCRUMB -->
-                
-                <!-- PAGE CONTENT WRAPPER -->
-                <div class="page-content-wrap">
-                
-                    <div class="row">
-                        <div class="col-md-12">
-                            
-                            <h:form class="form-horizontal">
+        <!-- END X-NAVIGATION VERTICAL -->                     
+        <ui:define name="myBody">
+            <div class="page-content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h:form class="form-horizontal" id="mainForm" prependId="false">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><strong>Add Service Provider</strong></h3>
-                                    <ul class="panel-controls">
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>
+                                    <h6>Service</h6>
                                 </div>
-                               <!-- <div class="panel-body">
-                                    <p>This is non libero bibendum, scelerisque arcu id, placerat nunc. Integer ullamcorper rutrum dui eget porta. Fusce enim dui, pulvinar a augue nec, dapibus hendrerit mauris. Praesent efficitur, elit non convallis faucibus, enim sapien suscipit mi, sit amet fringilla felis arcu id sem. Phasellus semper felis in odio convallis, et venenatis nisl posuere. Morbi non aliquet magna, a consectetur risus. Vivamus quis tellus eros. Nulla sagittis nisi sit amet orci consectetur laoreet. Vivamus volutpat erat ac vulputate laoreet. Phasellus eu ipsum massa.</p>
-                                </div>-->
-                                <div class="panel-body">                                                                        
-                                    
+                                <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Service provider Name</label>
+                                        <label class="col-md-3 col-xs-12 control-label">Service Name</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
-                                            </div>                                            
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Phone</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                <input type="password" class="form-control"/>
-                                            </div>            
-                                           
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Location</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                <input type="text" class="form-control datepicker" value=""/>                                            
-                                            </div>
-                                            
+                                                <p:inputText type="text" value="#{addServicesBean.name}" />
+                                            </div>   
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Working Hours</label>
-                                        <div class="col-md-6 col-xs-12">
-                                        <label>Days</label>  
-                                        <select class="form-control select">
-                                            
-                                            <option value="All days">All days</option>
-                                            <option value="All days expect Friday">All days expect Friday</option>
-                                            <option value="Saturday">Saturday</option>
-                                            <option value="Sunday">Sunday</option>
-                                            <option value="Monday">Monday</option>
-                                            <option value="Tuesday">Tuesday</option>
-                                            <option value="Wednesday">Wednesday</option>
-                                            <option value="Thursday">Thursday</option>
-                                            <option value="Friday">Friday</option>
-                                        </select>
-                                        <label>From</label>  
-                                        <select class="form-control select">
-                                            <option value="9:00">9:00</option>
-                                            <option value="10:00">10:00</option>
-                                            <option value="11:00">11:00</option>
-                                            <option value="12:00">12:00</option>
-                                        </select>
-                                        <label>To</label>  
-                                        <select class="form-control select">
-                                            <option value="9:00">9:00</option>
-                                            <option value="10:00">10:00</option>
-                                            <option value="11:00">11:00</option>
-                                            <option value="12:00">12:00</option>
-                                        </select>
+                                        <label class="col-md-3 col-xs-12 control-label">Type Name:</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <h:inputText value="#{addServicesBean.selectedType}"/>
+                                            </div>   
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Service</label>
-                                        <div class="col-md-6 col-xs-12">
-                                        <select class="form-control select">    
-                                            <option value="1">Gas Station</option>
-                                            <option value="2">Car towing</option>
-                                            <option value="3">Service Center</option>
-                                        </select> 
+                                        <label class="col-md-3 col-xs-12 control-label">Select Measuring Unit :</label>
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"></span>
+                                                <h:form prependId="false">
+                                                    <p:selectOneMenu id="years" value="#{addServicesBean.selectedUnit}">
+                                                        <f:selectItem itemLabel="Select Unit" itemValue="" noSelectionOption="true" />
+                                                        <f:selectItems value="#{addServicesBean.units}"/>
+                                                    </p:selectOneMenu>
+                                                    <p:commandButton value="Add to Type List" update="display" action="#{addServicesBean.addToTypeList}"/>
+                                                    <p:outputPanel id="display" style="width:250px;padding-left:5px;margin-top:10px">
+                                                        <p:dataList value="#{addServicesBean.typeAndUnits}" var="typeAndUnit" emptyMessage="Nothing to insert">
+                                                            #{typeAndUnit.typeName} : #{typeAndUnit.unitName}
+                                                        </p:dataList>
+                                                    </p:outputPanel>
+                                                </h:form>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-xs-12">                                            
+                                            <div class="input-group">
+                                                <span class="input-group-addon"></span>
+
+                                            </div>   
                                         </div>
                                     </div>
                                 </div>
-                                <center>
-                                    <p:commandButton value="Model" type="button" onclick="PF('dlg1').show();" />
-                                    <p:commandButton value="Service" type="button" onclick="PF('dlg2').show();" />
-                                </center>
-                                <p:dialog header="Supported Car" draggable="false" modal="true" widgetVar="dlg1" showEffect="explode" hideEffect="explode" height="200" width="500">
-                                    <h:form >
-                                        <p:growl id="msgs"   />
-
-                                        <p:panel style="border-style: none">
-                                            <h:panelGrid columns="2" cellpadding="5">
-                                                <p:outputLabel for="country" value="Make: " />
-                                                <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
-                                                    <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
-                                                    <f:selectItem itemLabel="Select Make" itemValue="" noSelectionOption="true" />
-                                                    <f:selectItems value="#{dropdownView.countries}" />
-                                                </p:selectOneMenu>
-
-                                                <p:outputLabel for="city" value="Model: " />
-                                                <p:selectOneMenu id="city" value="#{dropdownView.city}" style="width:150px">
-                                                    <f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="true" />
-                                                    <f:selectItems value="#{dropdownView.cities}" />
-                                                </p:selectOneMenu>
-
-                                                <p:outputLabel for="city" value="Trim: " />
-                                                <p:selectOneMenu id="trim" value="#{dropdownView.city}" style="width:150px">
-                                                    <f:selectItem itemLabel="Select Trim" itemValue="" noSelectionOption="true" />
-                                                    <f:selectItems value="#{dropdownView.cities}" />
-                                                </p:selectOneMenu>
-                                            </h:panelGrid>
-
-                                            <p:separator />
-
-                                            <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
-                                        </p:panel>
-                                    </h:form>
-                                </p:dialog>
-                                 <p:dialog header="Services" draggable="false" modal="true" widgetVar="dlg2" showEffect="explode" hideEffect="explode" height="200" width="500">
-                                    <h:form >
-                                        <p:growl id="msgs"   />
-
-                                        <p:panel style="border-style: none">
-                                            <h:panelGrid columns="2" cellpadding="5">
-                                    <p:outputLabel for="basic" value="Model" />
-        <p:selectOneListbox id="basic" value="#{selectOneView.option}">
-            <f:selectItem itemLabel="service 1" itemValue="1" />
-            <f:selectItem itemLabel="service 2" itemValue="2" />
-            <f:selectItem itemLabel="service 3" itemValue="3" />
-        </p:selectOneListbox>
-                                            </h:panelGrid>
-
-                                            <p:separator />
-                                            <p:inputText /><i class="fa fa-plus-square  fa-fw" aria-hidden="true"></i> Add new Service
-                                    <p:separator />
-                                    <p:commandButton value="Submit" update="msgs" actionListener="#{dropdownView.displayLocation}" icon="ui-icon-check" />
-                                        </p:panel>
-                                    </h:form>
-                                </p:dialog>
-                  
                                 <div class="panel-footer">
-                                    <button class="btn btn-default">Clear Form</button>                                    
-                                    <button class="btn btn-primary pull-right">Submit</button>
+                                    <p:commandButton label="Save Service" class="btn btn-primary " action="#{addServicesBean.insertService()}" >Save Serive</p:commandButton>
                                 </div>
                             </div>
-                            </h:form>
-                            
-                        </div>
-                    </div>                    
-                  
+                        </h:form>
+                    </div>
                 </div>
-                <!-- END PAGE CONTENT WRAPPER -->                                                
-           
-        <!-- MESSAGE BOX-->
-   
-     </ui:define>
+            </div>
+        </ui:define>
     </ui:composition>
 
-        
 </html>
