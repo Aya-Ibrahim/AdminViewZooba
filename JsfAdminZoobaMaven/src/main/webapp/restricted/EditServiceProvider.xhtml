@@ -233,7 +233,7 @@
                                     </p:column>
                                 </p:panelGrid>
                                 <div class="panel-footer">
-                                    <p:commandButton label="Save Address" class="btn btn-primary" action="#{editProviderDetailsBean.insertAddress()}" >Save Address</p:commandButton>
+                                    <p:commandButton value="Save Address" class="btn btn-primary" action="#{editProviderDetailsBean.insertAddress()}" />
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <p:commandButton label="Save Phone" class="btn btn-primary " action="#{editProviderDetailsBean.insertPhone()}" >Save Phone</p:commandButton>
+                                    <p:commandButton value="Save Phone" class="btn btn-primary " action="#{editProviderDetailsBean.insertPhone()}" />
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -277,7 +277,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <p:commandButton id="phonebtn" label="Save Phone" class="btn btn-primary " action="#{editProviderDetailsBean.insertMakes()}" >Save Makes</p:commandButton>
+                                    <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{editProviderDetailsBean.insertMakes()}" />
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -291,7 +291,6 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <h:panelGrid columns="6" cellspacing="5px">
-                                                    <h:outputLabel for="dmenu" value="Days :" />
                                                     <p:selectCheckboxMenu id="dmenu" value="#{editProviderDetailsBean.selectedDays}" label="Days"
                                                                           filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
                                                         <f:selectItems value="#{editProviderDetailsBean.getDays()}" />
@@ -308,7 +307,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <p:commandButton id="schedulebtn" label="Save Schedule" class="btn btn-primary " action="#{editProviderDetailsBean.insertSchedule()}" >Save Schedule</p:commandButton>
+                                    <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{editProviderDetailsBean.insertSchedule()}" />
                                 </div>
                             </div>
                             <div class="panel panel-default">
@@ -322,7 +321,6 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <h:panelGrid columns="6" cellpadding="5">
-                                                    <h:outputLabel for="servicesMenu" value="Supported Services:" />
                                                     <p:selectCheckboxMenu id="servicesMenu" value="#{editProviderDetailsBean.selectedServices}" label="Services"
                                                                           filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
                                                         <f:selectItems value="#{editProviderDetailsBean.getServices()}" />
@@ -339,7 +337,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <p:commandButton id="servicebtn" label="Save service" class="btn btn-primary " action="#{editProviderDetailsBean.insertServices()}" >Save Services</p:commandButton>
+                                    <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{editProviderDetailsBean.insertServices()}" />
                                 </div>
                             </div>
                         </h:form>
