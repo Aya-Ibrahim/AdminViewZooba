@@ -15,22 +15,35 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import pojo.Make;
+import pojo.ServiceProvider;
 import reham.DataLayer;
 
 /**
  *
  * @author Riham
  */
-@ManagedBean(name="serviceprovider")
+@ManagedBean(name = "serviceprovider")
 @SessionScoped
-public class ServiceProviderBean implements Serializable{
-    DataLayer handler=new DataLayer();
-    private DataModel<Object[]> model=new ListDataModel<>(handler.findServiceProviders());
-    private transient DataModel<Make> list=new ListDataModel<>();
+public class ServiceProviderBean implements Serializable {
+
+    DataLayer handler = new DataLayer();
+    private DataModel<Object[]> model = new ListDataModel<>(handler.findServiceProviders());
+    private transient DataModel<Make> list = new ListDataModel<>();
     String id;
+    @ManagedProperty(value = "#{editProviderDetailsBean}")
+    private EditServiceProviderDetailsBean editProviderDetailsBean;
+
     @ManagedProperty("#{services}")
     private ServiceBean bean;
     private List<String> serviceNames;
+
+    public EditServiceProviderDetailsBean getEditProviderDetailsBean() {
+        return editProviderDetailsBean;
+    }
+
+    public void setEditProviderDetailsBean(EditServiceProviderDetailsBean editProviderDetailsBean) {
+        this.editProviderDetailsBean = editProviderDetailsBean;
+    }
 
     public DataModel<Object[]> getModel() {
         return model;
@@ -58,15 +71,25 @@ public class ServiceProviderBean implements Serializable{
 
     public List<String> getServiceNames() {
         return bean.getServiceNames();
-    }  
-    
-    public String showMakesPage()
-    {
-        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+    }
+
+    public String showMakesPage() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         id = params.get("id");
-        int n=Integer.parseInt(id);
-        list=new ListDataModel<>(handler.showMakes(n));
+        int n = Integer.parseInt(id);
+        list = new ListDataModel<>(handler.showMakes(n));
         return "SupportedModels";
     }
-    
+
+    public String toEditPage() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        id = params.get("id");
+        facadePkg.DataLayer dataLayer = new facadePkg.DataLayer();
+        ServiceProvider serviceProvider = dataLayer.getServiceProviderById(Integer.parseInt(id));
+
+        editProviderDetailsBean.setServiceProvider(serviceProvider);
+        editProviderDetailsBean.setAddress(serviceProvider.getAddress());
+        return "EditServiceProvider";
+    }
+
 }

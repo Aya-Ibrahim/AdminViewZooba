@@ -302,8 +302,13 @@ public class AddCarByServiceBean implements Serializable {
                     selectedModel = model.getModel_name();
                     showTrims();
                     for (DtoTrim trim : dTrim) {
-                        selectedTrim = trim.getModel_trim();
-                        insertVehicle();
+                        try {
+                            selectedTrim = trim.getModel_trim();
+                            Thread.sleep(10000);
+                            insertVehicle();
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AddCarByServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
