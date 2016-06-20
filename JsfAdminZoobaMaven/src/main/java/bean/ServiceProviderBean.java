@@ -92,4 +92,8 @@ public class ServiceProviderBean implements Serializable {
         return "EditServiceProvider";
     }
 
+    public void onload() {
+        model = new ListDataModel<>(handler.findServiceProviders());
+    }
+
 }

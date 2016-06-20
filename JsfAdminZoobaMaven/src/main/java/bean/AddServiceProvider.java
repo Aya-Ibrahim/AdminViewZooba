@@ -8,6 +8,7 @@ package bean;
 import facadePkg.DataLayer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import pojo.ServiceProvider;
 
@@ -16,7 +17,7 @@ import pojo.ServiceProvider;
  * @author Ehab
  */
 @ManagedBean(name = "addSerivceProviderBean")
-@SessionScoped
+@RequestScoped
 public class AddServiceProvider {
 
     private String name;
@@ -69,7 +70,7 @@ public class AddServiceProvider {
         dataLayer.insertServiceProvider(newServiceProvider);
 
         ServiceProvider serviceProvider = dataLayer.getServiceProviderByName(name);
-
+        editProviderDetailsBean.initialize();
         editProviderDetailsBean.setServiceProvider(serviceProvider);
 
         return "EditServiceProvider";
