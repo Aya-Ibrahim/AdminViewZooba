@@ -15,8 +15,12 @@
     </context-param>
     
     <context-param>
-    <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
-    <param-value>false</param-value>
+        <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>  
+        <param-name>primefaces.THEME</param-name>  
+        <param-value>bootstrap</param-value>  
     </context-param>
     <!-- Welcome page -->
     <welcome-file-list>
@@ -47,9 +51,9 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-	<security-role>
+    <security-role>
         <description>
-             All persons belong to that role have access to restricted application area.
+            All persons belong to that role have access to restricted application area.
         </description>
         <role-name>admin</role-name>
     </security-role>
