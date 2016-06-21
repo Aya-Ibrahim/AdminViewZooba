@@ -10,39 +10,40 @@ import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import pojo.Make;
 import pojo.ServiceProvider;
 import facadePkg.DataLayer;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Riham
  */
 @ManagedBean(name = "serviceprovider")
-@SessionScoped
+@RequestScoped
 public class ServiceProviderBean implements Serializable {
 
     DataLayer handler = new DataLayer();
     private DataModel<Object[]> model = new ListDataModel<>(handler.findServiceProviders());
     private transient DataModel<Make> list = new ListDataModel<>();
-    String id;
-    @ManagedProperty(value = "#{editProvidersBean}")
-    private EditProviderBean editProviderBean;
+    private String id;
 
     @ManagedProperty("#{services}")
     private ServiceBean bean;
     private List<String> serviceNames;
 
-    public EditProviderBean getEditProviderDetailsBean() {
-        return editProviderBean;
+    @ManagedProperty("#{editProvider}")
+    private EditProviderBean editBean;
+
+    public EditProviderBean getEditBean() {
+        return editBean;
     }
 
-    public void setEditProviderBean(EditServiceProviderDetailsBean editProviderDetailsBean) {
-        this.editProviderBean = editProviderBean;
+    public void setEditBean(EditProviderBean editBean) {
+        this.editBean = editBean;
     }
 
     public DataModel<Object[]> getModel() {
@@ -86,9 +87,9 @@ public class ServiceProviderBean implements Serializable {
         id = params.get("id");
         facadePkg.DataLayer dataLayer = new facadePkg.DataLayer();
         ServiceProvider serviceProvider = dataLayer.getServiceProviderById(Integer.parseInt(id));
-        
-        editProviderBean.setServiceProvider(serviceProvider);
-        editProviderBean.fillData();
+
+        editBean.setServiceProvider(serviceProvider);
+        editBean.fillData();
         return "EditProviderDetails";
     }
 

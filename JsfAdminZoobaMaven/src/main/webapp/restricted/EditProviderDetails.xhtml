@@ -8,342 +8,379 @@
     <ui:composition template="../template/AdminTemplate.xhtml">
         <!-- END X-NAVIGATION VERTICAL -->                     
         <ui:define name="myBody">
-            <div class="page-content-wrap">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h:form class="form-horizontal" id="mainForm" prependId="false">
+            <p:tabView>
+                <div class="page-content-wrap">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p:tab title="Address Form">
+                                <h:form class="form-horizontal" id="mainForm" prependId="false">
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h6>Address</h6>
-                                </div>
-                                <p:panelGrid class="panel-body" columns="2">
-                                    <p:column>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">city</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.city}" />
-                                                </div>                                            
-
-                                            </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6>Address</h6>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Country</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.country}" />
-                                                </div>                                            
-
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Street</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.street}"/>
+                                        <p:panelGrid class="panel-body" columns="2">
+                                            <p:column>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">city</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText id="city" type="text" value="#{editProvider.city}" required="true" requiredMessage="City must be inserted" validatorMessage="Invalid City format">
+                                                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                                                                <f:ajax event="blur" render="cityMessage" />
+                                                            </p:inputText>
+                                                        </div>                                            
+                                                        <p:message id="cityMessage" for="city"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Landmark</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.landmark}"/>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Country</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText id="country" type="text" value="#{editProvider.country}" required="true" requiredMessage="Country must be inserted" validatorMessage="Invalid Country format">
+                                                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                                                                <f:ajax event="blur" render="countryMessage" />
+                                                            </p:inputText>
+                                                        </div>                                            
+                                                        <p:message id="countryMessage" for="country"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Other</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.others}"/>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Street</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText type="text" value="#{editProvider.street}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Postal Code</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText type="text" value="#{editProviderBean.postalCode}"/>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Landmark</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText type="text" value="#{editProvider.landmark}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Longitude</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText id="longitudePF" type="text" value="#{editProviderBean.longitude}"/>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Other</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText type="text" value="#{editProvider.others}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 col-xs-12 control-label">Latitude</label>
-                                            <div class="col-md-6 col-xs-12">                                            
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                    <p:inputText id="latitudePF" type="text" value="#{editProviderBean.latitude}"/>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Postal Code</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText id="postalcode" type="text" value="#{editProvider.postalCode}" validatorMessage="Invalid Postalcode">
+                                                                <f:validateRegex pattern="\d{5}"/>
+                                                                <f:ajax event="blur" render="postalcodeMessage" />
+                                                            </p:inputText>
+                                                        </div>   
+                                                        <p:message id="postalcodeMessage" for="postalcode"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </p:column>
-                                    <p:column>
-                                        <div id="mapholder"></div>
-                                        <button onclick="getLocation()" type="button">Pick From Map</button>
-                                        <br/>
-                                        Latitude:<input type="text" id="lat" />
-                                        <br/>
-                                        Longitude: <input type="text" id="lon"/>
-                                        <button onclick="" type="button">Get this Position</button>
-                                        <p:dialog id="dlg" showEffect="fade" closable="false">
-                                            <h:panelGrid columns="2">
-                                                <h:outputLabel for="title" value="Title:" />
-                                                <p:inputText id="title" value="#{mapBean.title}" />
-                                                <f:facet name="footer">
-                                                    <p:commandButton value="Add" oncomplete="markerAddComplete()" />
-                                                    <p:commandButton value="Cancel" onclick="return cancel()" />
-                                                </f:facet>
-                                            </h:panelGrid>
-                                            <h:inputHidden id="lat" value="#{mapBean.lat}" />
-                                            <h:inputHidden id="lon" value="#{mapBean.lng}" />
-                                        </p:dialog>
-                                        <script>
-                                            var newMarker = null;
-                                            var x = document.getElementById("demo");
-                                            function getThisLocation() {
-                                                lat = document.getElementById("lat").value;
-                                                lon = document.getElementById("lon").value;
-                                                latlon = new google.maps.LatLng(lat, lon);
-                                                mapholder = document.getElementById('mapholder');
-                                                mapholder.style.height = '250px';
-                                                mapholder.style.width = '500px';
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Longitude</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText id="longitudePF" type="text" value="#{editProvider.longitude}"/>
+                                                        </div>                                            
 
-                                                var myOptions = {
-                                                    center: latlon, zoom: 14,
-                                                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                                    mapTypeControl: false,
-                                                    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
-                                                };
-                                                var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-                                                map.addListener('click', function (e) {
-                                                    placeMarkerAndPanTo(e.latLng, map);
-                                                });
-                                                var marker = new google.maps.Marker({position: latlon, map: map, title: "You are here!"});
-                                            }
-                                            function getLocation()
-                                            {
-                                                if (navigator.geolocation)
-                                                {
-                                                    navigator.geolocation.getCurrentPosition(showPosition, showError);
-                                                } else {
-                                                    x.innerHTML = "Geolocation is not supported by this browser.";
-                                                }
-                                            }
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-3 col-xs-12 control-label">Latitude</label>
+                                                    <div class="col-md-6 col-xs-12">                                            
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                            <p:inputText id="latitudePF" type="text" value="#{editProvider.latitude}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </p:column>
+                                            <p:column>
+                                                <div id="mapholder"></div>
+                                                <button onclick="getLocation()" type="button">Pick From Map</button>
+                                                <br/>
+                                                Latitude:<input type="text" id="lat" />
+                                                <br/>
+                                                Longitude: <input type="text" id="lon"/>
+                                                <button onclick="" type="button">Get this Position</button>
+                                                <p:dialog id="dlg" showEffect="fade" closable="false">
+                                                    <h:panelGrid columns="2">
+                                                        <h:outputLabel for="title" value="Title:" />
+                                                        <p:inputText id="title" value="#{mapBean.title}" />
+                                                        <f:facet name="footer">
+                                                            <p:commandButton value="Add" oncomplete="markerAddComplete()" />
+                                                            <p:commandButton value="Cancel" onclick="return cancel()" />
+                                                        </f:facet>
+                                                    </h:panelGrid>
+                                                    <h:inputHidden id="lat" value="#{mapBean.lat}" />
+                                                    <h:inputHidden id="lon" value="#{mapBean.lng}" />
+                                                </p:dialog>
+                                                <script>
+                                                    var newMarker = null;
+                                                    var x = document.getElementById("demo");
+                                                    function getThisLocation() {
+                                                        lat = document.getElementById("lat").value;
+                                                        lon = document.getElementById("lon").value;
+                                                        latlon = new google.maps.LatLng(lat, lon);
+                                                        mapholder = document.getElementById('mapholder');
+                                                        mapholder.style.height = '250px';
+                                                        mapholder.style.width = '500px';
 
-                                            function showPosition(position)
-                                            {
-                                                lat = position.coords.latitude;
-                                                lon = position.coords.longitude;
-                                                document.getElementById("lat").value = lat;
-                                                document.getElementById("lon").value = lon;
-                                                latlon = new google.maps.LatLng(lat, lon);
-                                                mapholder = document.getElementById('mapholder');
-                                                mapholder.style.height = '250px';
-                                                mapholder.style.width = '500px';
+                                                        var myOptions = {
+                                                            center: latlon, zoom: 14,
+                                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                                            mapTypeControl: false,
+                                                            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
+                                                        };
+                                                        var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+                                                        map.addListener('click', function (e) {
+                                                            placeMarkerAndPanTo(e.latLng, map);
+                                                        });
+                                                        var marker = new google.maps.Marker({position: latlon, map: map, title: "You are here!"});
+                                                    }
+                                                    function getLocation()
+                                                    {
+                                                        if (navigator.geolocation)
+                                                        {
+                                                            navigator.geolocation.getCurrentPosition(showPosition, showError);
+                                                        } else {
+                                                            x.innerHTML = "Geolocation is not supported by this browser.";
+                                                        }
+                                                    }
 
-                                                var myOptions = {
-                                                    center: latlon, zoom: 14,
-                                                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                                    mapTypeControl: false,
-                                                    navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
-                                                };
-                                                var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-                                                var marker = new google.maps.Marker({position: latlon, map: map, title: "You are here!"});
-                                                map.addListener('click', function (e) {
-                                                    placeMarkerAndPanTo(e.latLng, map);
-                                                });
-                                            }
-                                            function setPosition(position)
-                                            {
-                                                lat = position.coords.latitude;
-                                                lon = position.coords.longitude;
-                                                document.getElementById("lat").value = lat;
-                                                document.getElementById("lon").value = lon;
+                                                    function showPosition(position)
+                                                    {
+                                                        lat = position.coords.latitude;
+                                                        lon = position.coords.longitude;
+                                                        document.getElementById("lat").value = lat;
+                                                        document.getElementById("lon").value = lon;
+                                                        latlon = new google.maps.LatLng(lat, lon);
+                                                        mapholder = document.getElementById('mapholder');
+                                                        mapholder.style.height = '250px';
+                                                        mapholder.style.width = '500px';
 
-                                            }
+                                                        var myOptions = {
+                                                            center: latlon, zoom: 14,
+                                                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                                            mapTypeControl: false,
+                                                            navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL}
+                                                        };
+                                                        var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+                                                        var marker = new google.maps.Marker({position: latlon, map: map, title: "You are here!"});
+                                                        map.addListener('click', function (e) {
+                                                            placeMarkerAndPanTo(e.latLng, map);
+                                                        });
+                                                    }
+                                                    function setPosition(position)
+                                                    {
+                                                        lat = position.coords.latitude;
+                                                        lon = position.coords.longitude;
+                                                        document.getElementById("lat").value = lat;
+                                                        document.getElementById("lon").value = lon;
 
-                                            function showError(error)
-                                            {
-                                                switch (error.code)
-                                                {
-                                                    case error.PERMISSION_DENIED:
-                                                        x.innerHTML = "User denied the request for Geolocation."
-                                                        break;
-                                                    case error.POSITION_UNAVAILABLE:
-                                                        x.innerHTML = "Location information is unavailable."
-                                                        break;
-                                                    case error.TIMEOUT:
-                                                        x.innerHTML = "The request to get user location timed out."
-                                                        break;
-                                                    case error.UNKNOWN_ERROR:
-                                                        x.innerHTML = "An unknown error occurred."
-                                                        break;
-                                                }
-                                            }
-                                            function placeMarkerAndPanTo(latLng, map) {
-                                                $("#dlg").show();
-                                                newMarker = new google.maps.Marker({
-                                                    position: latLng,
-                                                    map: map
-                                                });
-                                                if (navigator.geolocation)
-                                                {
-                                                    navigator.geolocation.getCurrentPosition(setPosition, showError);
-                                                } else {
-                                                    x.innerHTML = "Geolocation is not supported by this browser.";
-                                                }
-                                                map.panTo(latLng);
-                                            }
-                                            function markerAddComplete() {
-                                                var title = document.getElementById('title');
-                                                newMarker.setTitle(title.value);
-                                                title.value = "";
-                                                newMarker = null;
-                                                $("#dlg").hide();
-                                                hLat = document.getElementById("lat").value;
-                                                hLon = document.getElementById("lon").value;
-                                                jQuery('#longitudePF').val(hLon);
-                                                jQuery('#latitudePF').val(hLat);
-                                            }
-                                            function cancel() {
-                                                $("#dlg").hide();
-                                                newMarker.setMap(null);
-                                                newMarker = null;
+                                                    }
 
-                                                return false;
-                                            }
-                                        </script>
-                                    </p:column>
-                                </p:panelGrid>
-                                <div class="panel-footer">
-                                    <p:commandButton value="Save Address" class="btn btn-primary" action="#{editProviderBean.insertAddress()}" />
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h6>Phone</h6>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Phone</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <p:inputText type="text" value="#{editProviderBean.phone}" />
-                                            </div>   
+                                                    function showError(error)
+                                                    {
+                                                        switch (error.code)
+                                                        {
+                                                            case error.PERMISSION_DENIED:
+                                                                x.innerHTML = "User denied the request for Geolocation."
+                                                                break;
+                                                            case error.POSITION_UNAVAILABLE:
+                                                                x.innerHTML = "Location information is unavailable."
+                                                                break;
+                                                            case error.TIMEOUT:
+                                                                x.innerHTML = "The request to get user location timed out."
+                                                                break;
+                                                            case error.UNKNOWN_ERROR:
+                                                                x.innerHTML = "An unknown error occurred."
+                                                                break;
+                                                        }
+                                                    }
+                                                    function placeMarkerAndPanTo(latLng, map) {
+                                                        $("#dlg").show();
+                                                        newMarker = new google.maps.Marker({
+                                                            position: latLng,
+                                                            map: map
+                                                        });
+                                                        if (navigator.geolocation)
+                                                        {
+                                                            navigator.geolocation.getCurrentPosition(setPosition, showError);
+                                                        } else {
+                                                            x.innerHTML = "Geolocation is not supported by this browser.";
+                                                        }
+                                                        map.panTo(latLng);
+                                                    }
+                                                    function markerAddComplete() {
+                                                        var title = document.getElementById('title');
+                                                        newMarker.setTitle(title.value);
+                                                        title.value = "";
+                                                        newMarker = null;
+                                                        $("#dlg").hide();
+                                                        hLat = document.getElementById("lat").value;
+                                                        hLon = document.getElementById("lon").value;
+                                                        jQuery('#longitudePF').val(hLon);
+                                                        jQuery('#latitudePF').val(hLat);
+                                                    }
+                                                    function cancel() {
+                                                        $("#dlg").hide();
+                                                        newMarker.setMap(null);
+                                                        newMarker = null;
+
+                                                        return false;
+                                                    }
+                                                </script>
+                                            </p:column>
+                                        </p:panelGrid>
+                                        <div class="panel-footer">
+                                            <p:commandButton value="Save Address" class="btn btn-primary" action="#{editProvider.insertAddress()}" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <p:commandButton value="Save Phone" class="btn btn-primary " action="#{editProviderBean.insertPhone()}" />
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h6>Supported Makes</h6>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Supported Make</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <h:panelGrid columns="3" cellpadding="5">
-                                                    <h:outputLabel for="menu" value="Supported Makes:" />
-                                                    <p:selectCheckboxMenu id="menu" value="#{editProviderBean.selectedMakes}" label="Makes"
-                                                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                        <f:selectItems value="#{editProviderBean.getMakes()}" />
-                                                    </p:selectCheckboxMenu>
-                                                </h:panelGrid>
-                                            </div>   
+                                </h:form>
+                            </p:tab>
+                            <p:tab title="Phone Form">
+                                <h:form>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6>Phone</h6>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 col-xs-12 control-label">Phone</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        <p:inputText id="phone" type="text" value="#{editProvider.phone}" validatorMessage="Invalid Phone Number"  required="true" requiredMessage="Phone must be inserted">
+                                                            <f:validateRegex pattern="\d{10}"/>
+                                                            <f:ajax event="blur" render="phoneMessage" />
+                                                        </p:inputText>
+                                                    </div>   
+                                                    <p:message id="phoneMessage" for="phone"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <p:commandButton value="Save Phone" class="btn btn-primary " action="#{editProvider.insertPhone()}" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{editProviderBean.insertMakes()}" />
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h6>Schedule</h6>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Schedule</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <h:panelGrid columns="6" cellspacing="5px">
-                                                    <p:selectCheckboxMenu id="dmenu" value="#{editProviderBean.selectedDays}" label="Days"
-                                                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                        <f:selectItems value="#{editProviderBean.getDays()}" />
-                                                    </p:selectCheckboxMenu>
-                                                    <h:outputText value="From  " style="font-size: 16px"/>
-                                                    <pe:timePicker value="#{editProviderBean.from}" widgetVar="spinnerTimeWidget"  
-                                                                   label="Spinner time picker"/>
-                                                    <h:outputText value="to  " style="font-size: 16px"/>
-                                                    <pe:timePicker value="#{editProviderBean.to}" widgetVar="spinnerTimeWidget"  
-                                                                   label="Spinner time picker"/>
-                                                </h:panelGrid>
-                                            </div>   
+                                </h:form>
+                            </p:tab>
+
+                            <p:tab title="Supported Makes">
+                                <h:form>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6>Supported Makes</h6>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 col-xs-12 control-label">Supported Make</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        <h:panelGrid columns="3" cellpadding="5">
+                                                            <h:outputLabel for="menu" value="Supported Makes:" />
+                                                            <p:selectCheckboxMenu id="menu" value="#{editProvider.selectedMakes}" label="Makes"
+                                                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                                                <f:selectItems value="#{editProvider.getMakes()}" />
+                                                            </p:selectCheckboxMenu>
+                                                        </h:panelGrid>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{editProvider.insertMakes()}" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{editProviderBean.insertSchedule()}" />
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h6>Supported Services</h6>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Supported Services</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <h:panelGrid columns="6" cellpadding="5">
-                                                    <p:selectCheckboxMenu id="servicesMenu" value="#{editProviderBean.selectedServices}" label="Services"
-                                                                          filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                        <f:selectItems value="#{editProviderBean.getServices()}" />
-                                                    </p:selectCheckboxMenu>
-                                                    <h:outputText value="From  " style="font-size: 16px"/>
-                                                    <pe:timePicker value="#{editProviderBean.serviceFrom}" widgetVar="spinnerTimeWidget"  
-                                                                   label="Spinner time picker"/>
-                                                    <h:outputText value="to  " style="font-size: 16px"/>
-                                                    <pe:timePicker value="#{editProviderBean.serviceTo}" widgetVar="spinnerTimeWidget"  
-                                                                   label="Spinner time picker"/>
-                                                </h:panelGrid>
-                                            </div>   
+                                </h:form>
+                            </p:tab>
+                            <p:tab title="Schedule Form">
+                                <h:form>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6>Schedule</h6>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 col-xs-12 control-label">Schedule</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        <h:panelGrid columns="6" cellspacing="5px">
+                                                            <p:selectCheckboxMenu id="dmenu" value="#{editProvider.selectedDays}" label="Days"
+                                                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                                                <f:selectItems value="#{editProvider.getDays()}" />
+                                                            </p:selectCheckboxMenu>
+                                                            <h:outputText value="From  " style="font-size: 16px"/>
+                                                            <pe:timePicker value="#{editProvider.from}" widgetVar="spinnerTimeWidget"  
+                                                                           label="Spinner time picker"/>
+                                                            <h:outputText value="to  " style="font-size: 16px"/>
+                                                            <pe:timePicker value="#{editProvider.to}" widgetVar="spinnerTimeWidget"  
+                                                                           label="Spinner time picker"/>
+                                                        </h:panelGrid>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{editProvider.insertSchedule()}" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{editProviderDetailsBean.insertServices()}" />
-                                </div>
-                            </div>
-                        </h:form>
+                                </h:form>
+                            </p:tab>
+                            <p:tab title="Supported Services">
+                                <h:form>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h6>Supported Services</h6>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 col-xs-12 control-label">Supported Services</label>
+                                                <div class="col-md-6 col-xs-12">                                            
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                        <h:panelGrid columns="6" cellpadding="5">
+                                                            <p:selectCheckboxMenu id="servicesMenu" value="#{editProvider.selectedServices}" label="Services"
+                                                                                  filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                                                <f:selectItems value="#{editProvider.getServices()}" />
+                                                            </p:selectCheckboxMenu>
+                                                            <h:outputText value="From  " style="font-size: 16px"/>
+                                                            <pe:timePicker value="#{editProvider.serviceFrom}" widgetVar="spinnerTimeWidget"  
+                                                                           label="Spinner time picker"/>
+                                                            <h:outputText value="to  " style="font-size: 16px"/>
+                                                            <pe:timePicker value="#{editProvider.serviceTo}" widgetVar="spinnerTimeWidget"  
+                                                                           label="Spinner time picker"/>
+                                                        </h:panelGrid>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{editProvider.insertServices()}" />
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </p:tab>
+                            <!--  </h:form>-->
+                        </div>
                     </div>
                 </div>
-            </div>
+            </p:tabView>
         </ui:define>
 
     </ui:composition>
