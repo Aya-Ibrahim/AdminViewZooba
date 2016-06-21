@@ -31,6 +31,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.client.ClientConfig;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojo.CarFeatures;
 import pojo.Make;
 import pojo.Model;
@@ -232,25 +233,28 @@ public class AddCarByServiceBean implements Serializable {
         Year year = new Year(Integer.parseInt(selectedYear));
         Trim trim = new Trim(selectedTrim);
         dataLayer.insertVehicle(make, model, year, trim);
-//        insertCarDetails();
+        insertCarDetails();
 
     }
 
     private void insertCarFeatures() {
 
         Session session = HibernateFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         CarFeaturesDao carFeaturesDao = new CarFeaturesDao(session);
 
         Field[] fields = DtoTrim.class.getDeclaredFields();
         for (int i = 0; i < fields.length; i++) {
             CarFeatures carFeatures = new CarFeatures(fields[i].getName());
-            carFeaturesDao.saveOrUpdate(carFeatures);
+            carFeaturesDao.create(carFeatures);
         }
+        transaction.commit();
+        HibernateFactory.close(session);
     }
 
     private void insertCarDetails() {
         Session session = HibernateFactory.openSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         CarFeaturesDao carFeaturesDao = new CarFeaturesDao(session);
         ModelFeatureValueDao modelFeatureValueDao = new ModelFeatureValueDao(session);
         CarFeatures carFeatures = null;
@@ -276,7 +280,7 @@ public class AddCarByServiceBean implements Serializable {
 
                 ModelFeaturesValues modelFeaturesValues = new ModelFeaturesValues(carFeatures, result);
                 modelFeatureValueDao.create(modelFeaturesValues);
-                session.getTransaction().commit();
+
             } catch (NoSuchMethodException | SecurityException ex) {
                 ex.printStackTrace();
             } catch (IllegalAccessException ex) {
@@ -287,7 +291,7 @@ public class AddCarByServiceBean implements Serializable {
                 ex.printStackTrace();
             }
         }
-
+        transaction.commit();
     }
 
     public void insertAll() {
