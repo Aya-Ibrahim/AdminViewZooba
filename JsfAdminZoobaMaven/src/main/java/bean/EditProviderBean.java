@@ -23,7 +23,7 @@ import pojo.ServiceProviderServices;
  *
  * @author Ehab
  */
-@ManagedBean(name = "editProvidersBean",eager = true)
+@ManagedBean(name = "editProvider",eager = true)
 @SessionScoped
 public class EditProviderBean {
 
@@ -53,7 +53,7 @@ public class EditProviderBean {
 
     public Date getServiceFrom() {
         return serviceFrom;
-    }
+}
 
     public void setServiceFrom(Date serviceFrom) {
         this.serviceFrom = serviceFrom;
