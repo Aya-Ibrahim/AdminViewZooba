@@ -75,4 +75,9 @@
             <form-error-page>/faces/login.xhtml</form-error-page>
         </form-login-config>
     </login-config>
+    
+    
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
 </web-app>

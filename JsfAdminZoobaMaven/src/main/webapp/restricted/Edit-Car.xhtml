@@ -19,72 +19,78 @@
             </ul>
             <!-- END BREADCRUMB -->
             <ui:repeat var="a" value="#{vehiclemodel.model}" >
-            <!-- PAGE CONTENT WRAPPER -->
-            <div class="page-content-wrap">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h:form class="form-horizontal">
-                            <div class="panel panel-default">
-                              
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">Year</label>
-                                        <div class="col-md-6 col-xs-12">                                            
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>                               
-                                                    <p:inputText value="#{a.year.name}" type="text"/>
-                                               
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:form class="form-horizontal">
+                                <div class="panel panel-default">
+
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 col-xs-12 control-label">Year</label>
+                                            <div class="col-md-6 col-xs-12">                                            
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-pencil"></span></span>                               
+                                                    <p:autoComplete  id="year" value="#{a.year.name}" completeMethod="#{serviceByInput.getYears}" required="true" requiredMessage="Year must be inserted">
+                                                    <f:ajax event="blur" render="yearMessage" />
+                                                </p:autoComplete>
                                             </div>                                            
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Make</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
-                                                <p:inputText value="#{a.model.make.name}" type="text"/>
-                                            </div>            
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Model</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                <p:inputText value="#{a.model.name}" type="text"/>
-                                               
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group">                                        
-                                        <label class="col-md-3 col-xs-12 control-label">Trim</label>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                <p:inputText type="text" value="#{a.trim.name}"/> 
-                                                
+                                            <p:message id="yearMessage" for="year"/>
                                             </div>
                                         </div>
-                                        <p:commandButton value="Edit" actionListener="#{vehiclemodel.updateVehicleModel(a)}" icon="ui-icon-check" />
-                                        <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
+
+                                        <div class="form-group">                                        
+                                            <label class="col-md-3 col-xs-12 control-label">Make</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
+                                                    <p:inputText id="make" value="#{a.model.make.name}" type="text" required="true" requiredMessage="Make must be inserted">
+                                                    <f:ajax event="blur" render="makeMessage" />
+                                                    </p:inputText>
+                                                </div>            
+                                                <p:message id="makeMessage" for="make"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">                                        
+                                            <label class="col-md-3 col-xs-12 control-label">Model</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                    <p:inputText id="model" value="#{a.model.name}" type="text" required="true" requiredMessage="Model must be inserted">
+                                                    <f:ajax event="blur" render="modelMessage" />
+                                                    </p:inputText>
+                                                </div>
+                                                <p:message id="modelMessage" for="model"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">                                        
+                                            <label class="col-md-3 col-xs-12 control-label">Trim</label>
+                                            <div class="col-md-6 col-xs-12">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                    <p:inputText id="trim" type="text" value="#{a.trim.name}" required="true" requiredMessage="Trim must be inserted"> 
+                                                    <f:ajax event="blur" render="trimMessage" />
+                                                    </p:inputText>
+                                                </div>
+                                                <p:message id="trimMessage" for="trim"/>
+                                            </div>
+                                            <p:commandButton value="Edit" actionListener="#{vehiclemodel.updateVehicleModel(a)}" icon="ui-icon-check" />
+                                            <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button class="btn btn-default">Clear Form</button>                                    
+                                        <button class="btn btn-primary pull-right">Submit</button>
                                     </div>
                                 </div>
-                                <div class="panel-footer">
-                                    <button class="btn btn-default">Clear Form</button>                                    
-                                    <button class="btn btn-primary pull-right">Submit</button>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>                    
-            </div>
-            <!-- END PAGE CONTENT WRAPPER -->                                                
-</ui:repeat>
+                            </h:form>
+                        </div>
+                    </div>                    
+                </div>
+                <!-- END PAGE CONTENT WRAPPER -->                                                
+            </ui:repeat>
             <!-- MESSAGE BOX-->
 
         </ui:define>
