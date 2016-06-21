@@ -11,7 +11,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import pojo.Service;
-import reham.DataLayer;
+import facadePkg.DataLayer;
 
 /**
  *
