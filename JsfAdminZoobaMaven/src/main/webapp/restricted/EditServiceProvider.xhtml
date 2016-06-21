@@ -26,7 +26,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="city" type="text" value="#{editProviderDetailsBean.city}" required="true" requiredMessage="City must be inserted" validatorMessage="Invalid City format">
+                                                            <p:inputText id="city" type="text" value="#{enterProviderDetailsBean.city}" required="true" requiredMessage="City must be inserted" validatorMessage="Invalid City format">
                                                                 <f:validateRegex pattern="^[a-zA-Z]+$"/>
                                                                 <f:ajax event="blur" render="cityMessage" />
                                                             </p:inputText>
@@ -39,7 +39,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="country" type="text" value="#{editProviderDetailsBean.country}" required="true" requiredMessage="Country must be inserted" validatorMessage="Invalid Country format">
+                                                            <p:inputText id="country" type="text" value="#{enterProviderDetailsBean.country}" required="true" requiredMessage="Country must be inserted" validatorMessage="Invalid Country format">
                                                                 <f:validateRegex pattern="^[a-zA-Z]+$"/>
                                                                 <f:ajax event="blur" render="countryMessage" />
                                                             </p:inputText>
@@ -52,7 +52,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText type="text" value="#{editProviderDetailsBean.street}"/>
+                                                            <p:inputText type="text" value="#{enterProviderDetailsBean.street}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -61,7 +61,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText type="text" value="#{editProviderDetailsBean.landmark}"/>
+                                                            <p:inputText type="text" value="#{enterProviderDetailsBean.landmark}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText type="text" value="#{editProviderDetailsBean.others}"/>
+                                                            <p:inputText type="text" value="#{enterProviderDetailsBean.others}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,7 +79,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="postalcode" type="text" value="#{editProviderDetailsBean.postalCode}" validatorMessage="Invalid Postalcode">
+                                                            <p:inputText id="postalcode" type="text" value="#{enterProviderDetailsBean.postalCode}" validatorMessage="Invalid Postalcode">
                                                             <f:validateRegex pattern="\d{5}"/>
                                                             <f:ajax event="blur" render="postalcodeMessage" />
                                                             </p:inputText>
@@ -92,7 +92,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="longitudePF" type="text" value="#{editProviderDetailsBean.longitude}"/>
+                                                            <p:inputText id="longitudePF" type="text" value="#{enterProviderDetailsBean.longitude}"/>
                                                         </div>                                            
 
                                                     </div>
@@ -102,7 +102,7 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="latitudePF" type="text" value="#{editProviderDetailsBean.latitude}"/>
+                                                            <p:inputText id="latitudePF" type="text" value="#{enterProviderDetailsBean.latitude}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -246,7 +246,7 @@
                                             </p:column>
                                         </p:panelGrid>
                                         <div class="panel-footer">
-                                            <p:commandButton value="Save Address" class="btn btn-primary" action="#{editProviderDetailsBean.insertAddress()}" />
+                                            <p:commandButton value="Save Address" class="btn btn-primary" action="#{enterProviderDetailsBean.insertAddress()}" />
                                         </div>
                                     </div>
                                 </h:form>
@@ -263,7 +263,7 @@
                                                 <div class="col-md-6 col-xs-12">                                            
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                        <p:inputText id="phone" type="text" value="#{editProviderDetailsBean.phone}" validatorMessage="Invalid Phone Number"  required="true" requiredMessage="Phone must be inserted">
+                                                        <p:inputText id="phone" type="text" value="#{enterProviderDetailsBean.phone}" validatorMessage="Invalid Phone Number"  required="true" requiredMessage="Phone must be inserted">
                                                             <f:validateRegex pattern="\d{10}"/>
                                                             <f:ajax event="blur" render="phoneMessage" />
                                                         </p:inputText>
@@ -273,7 +273,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <p:commandButton value="Save Phone" class="btn btn-primary " action="#{editProviderDetailsBean.insertPhone()}" />
+                                            <p:commandButton value="Save Phone" class="btn btn-primary " action="#{enterProviderDetailsBean.insertPhone()}" />
                                         </div>
                                     </div>
                                 </h:form>
@@ -292,9 +292,9 @@
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                     <h:panelGrid columns="3" cellpadding="5">
                                                         <h:outputLabel for="menu" value="Supported Makes:" />
-                                                        <p:selectCheckboxMenu id="menu" value="#{editProviderDetailsBean.selectedMakes}" label="Makes"
+                                                        <p:selectCheckboxMenu id="menu" value="#{enterProviderDetailsBean.selectedMakes}" label="Makes"
                                                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                            <f:selectItems value="#{editProviderDetailsBean.getMakes()}" />
+                                                            <f:selectItems value="#{enterProviderDetailsBean.getMakes()}" />
                                                         </p:selectCheckboxMenu>
                                                     </h:panelGrid>
                                                 </div>   
@@ -302,7 +302,7 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer">
-                                        <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{editProviderDetailsBean.insertMakes()}" />
+                                        <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{enterProviderDetailsBean.insertMakes()}" />
                                     </div>
                                 </div>
                             </p:tab>
@@ -318,15 +318,15 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                     <h:panelGrid columns="6" cellspacing="5px">
-                                                        <p:selectCheckboxMenu id="dmenu" value="#{editProviderDetailsBean.selectedDays}" label="Days"
+                                                        <p:selectCheckboxMenu id="dmenu" value="#{enterProviderDetailsBean.selectedDays}" label="Days"
                                                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                            <f:selectItems value="#{editProviderDetailsBean.getDays()}" />
+                                                            <f:selectItems value="#{enterProviderDetailsBean.getDays()}" />
                                                         </p:selectCheckboxMenu>
                                                         <h:outputText value="From  " style="font-size: 16px"/>
-                                                        <pe:timePicker value="#{editProviderDetailsBean.from}" widgetVar="spinnerTimeWidget"  
+                                                        <pe:timePicker value="#{enterProviderDetailsBean.from}" widgetVar="spinnerTimeWidget"  
                                                                        label="Spinner time picker"/>
                                                         <h:outputText value="to  " style="font-size: 16px"/>
-                                                        <pe:timePicker value="#{editProviderDetailsBean.to}" widgetVar="spinnerTimeWidget"  
+                                                        <pe:timePicker value="#{enterProviderDetailsBean.to}" widgetVar="spinnerTimeWidget"  
                                                                        label="Spinner time picker"/>
                                                     </h:panelGrid>
                                                 </div>   
@@ -334,7 +334,7 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer">
-                                        <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{editProviderDetailsBean.insertSchedule()}" />
+                                        <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{enterProviderDetailsBean.insertSchedule()}" />
                                     </div>
                                 </div>
                             </p:tab>
@@ -350,15 +350,15 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                     <h:panelGrid columns="6" cellpadding="5">
-                                                        <p:selectCheckboxMenu id="servicesMenu" value="#{editProviderDetailsBean.selectedServices}" label="Services"
+                                                        <p:selectCheckboxMenu id="servicesMenu" value="#{enterProviderDetailsBean.selectedServices}" label="Services"
                                                                               filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
-                                                            <f:selectItems value="#{editProviderDetailsBean.getServices()}" />
+                                                            <f:selectItems value="#{enterProviderDetailsBean.getServices()}" />
                                                         </p:selectCheckboxMenu>
                                                         <h:outputText value="From  " style="font-size: 16px"/>
-                                                        <pe:timePicker value="#{editProviderDetailsBean.serviceFrom}" widgetVar="spinnerTimeWidget"  
+                                                        <pe:timePicker value="#{enterProviderDetailsBean.serviceFrom}" widgetVar="spinnerTimeWidget"  
                                                                        label="Spinner time picker"/>
                                                         <h:outputText value="to  " style="font-size: 16px"/>
-                                                        <pe:timePicker value="#{editProviderDetailsBean.serviceTo}" widgetVar="spinnerTimeWidget"  
+                                                        <pe:timePicker value="#{enterProviderDetailsBean.serviceTo}" widgetVar="spinnerTimeWidget"  
                                                                        label="Spinner time picker"/>
                                                     </h:panelGrid>
                                                 </div>   
@@ -366,7 +366,7 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer">
-                                        <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{editProviderDetailsBean.insertServices()}" />
+                                        <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{enterProviderDetailsBean.insertServices()}" />
                                     </div>
                                 </div>
                             </p:tab>

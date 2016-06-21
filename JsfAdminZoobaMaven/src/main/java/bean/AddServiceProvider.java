@@ -24,7 +24,7 @@ public class AddServiceProvider {
     private String email;
     private String webSite;
 
-    @ManagedProperty(value = "#{editProviderDetailsBean}")
+    @ManagedProperty(value = "#{enterProviderDetailsBean}")
     private EditServiceProviderDetailsBean editProviderDetailsBean;
 
     public EditServiceProviderDetailsBean getEditProviderDetailsBean() {

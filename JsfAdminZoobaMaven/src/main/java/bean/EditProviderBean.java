@@ -6,24 +6,26 @@
 package bean;
 
 import facadePkg.DataLayer;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import pojo.Address;
 import pojo.Days;
 import pojo.Make;
 import pojo.ServiceProvider;
+import pojo.ServiceProviderCalendar;
 import pojo.ServiceProviderPhone;
+import pojo.ServiceProviderServices;
 
 /**
  *
  * @author Ehab
  */
-@ManagedBean(name = "enterProviderDetailsBean", eager = true)
+@ManagedBean(name = "editProvidersBean",eager = true)
 @SessionScoped
-public class EditServiceProviderDetailsBean {
+public class EditProviderBean {
 
     private ServiceProvider serviceProvider;
     private Address address;
@@ -39,6 +41,7 @@ public class EditServiceProviderDetailsBean {
     private String postalCode;
     private Float longitude;
     private Float latitude;
+    private int id;
     private String phone;
     private String[] selectedMakes;
     private String[] selectedDays;
@@ -219,7 +222,7 @@ public class EditServiceProviderDetailsBean {
     public void insertAddress() {
 
         address = new Address(serviceProvider, city, country, street, landmark, others, postalCode, longitude, latitude);
-
+        address.setId(id);
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertAddressForServiceProvider(address);
     }
@@ -272,25 +275,29 @@ public class EditServiceProviderDetailsBean {
         dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider, serviceFrom, serviceTo);
     }
 
-    public void initialize() {
-        address = null;
-        make = null;
-        day = null;
-        city = "";
-        country = "";
-        street = "";
-        landmark = "";
-        others = "";
-        postalCode = "";
-        longitude = 0F;
-        latitude = 0F;
-        phone = null;
-        selectedMakes = null;
-        selectedDays = null;
-        selectedServices = null;
-        from = null;
-        to = null;
-        serviceFrom = null;
-        serviceTo = null;
+    public void fillData() {
+        city = serviceProvider.getAddress().getCity();
+        country = serviceProvider.getAddress().getCountry();
+        landmark = serviceProvider.getAddress().getLandmark();
+        others = serviceProvider.getAddress().getOthers();
+        postalCode = serviceProvider.getAddress().getPostalCode();
+        longitude = serviceProvider.getAddress().getLongitude();
+        latitude = serviceProvider.getAddress().getLatitude();
+        id = serviceProvider.getAddress().getId();
+        selectedMakes = new String[50];
+        selectedDays = new String[50];
+        selectedServices = new String[50];
+        List<Make> makeListEdit = new ArrayList<>(serviceProvider.getMakes());
+        for (int i = 0; i < makeListEdit.size(); i++) {
+            selectedMakes[i] = makeListEdit.get(i).getName();
+        }
+        List<ServiceProviderCalendar> dayListEdit = new ArrayList<>(serviceProvider.getServiceProviderCalendars());
+        for (int i = 0; i < dayListEdit.size(); i++) {
+            selectedDays[i] = dayListEdit.get(i).getDays().getName();
+        }
+        List<ServiceProviderServices> serviceListEdit = new ArrayList<>(serviceProvider.getServiceProviderServiceses());
+        for (int i = 0; i < serviceListEdit.size(); i++) {
+            selectedServices[i] = serviceListEdit.get(i).getService().getName();
+        }
     }
 }
