@@ -9,6 +9,7 @@ import facadePkg.DataLayer;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import pojo.Address;
 import pojo.Days;
@@ -268,6 +269,28 @@ public class EditServiceProviderDetailsBean {
 
     public void insertServices() {
         DataLayer dataLayer = new DataLayer();
-        dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider ,serviceFrom,serviceTo);
+        dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider, serviceFrom, serviceTo);
+    }
+
+    void initialize() {
+        address = null;
+        make = null;
+        day = null;
+        city = "";
+        country = "";
+        street = "";
+        landmark = "";
+        others = "";
+        postalCode = "";
+        longitude = 0F;
+        latitude = 0F;
+        phone = null;
+        selectedMakes = null;
+        selectedDays = null;
+        selectedServices = null;
+        from = null;
+        to = null;
+        serviceFrom = null;
+        serviceTo = null;
     }
 }

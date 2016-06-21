@@ -8,12 +8,31 @@
         <!-- END X-NAVIGATION VERTICAL -->                     
 
         <ui:define name="myBody">
+            <p:ajaxStatus> 
+                <f:facet name="prestart">
+                    <h:outputText value="Starting..." /> </f:facet>
+                <f:facet name="error"> <h:outputText value="Error" />
+                </f:facet>
+                <f:facet name="success"> <h:outputText value="Success" />
+                </f:facet>
+                <f:facet name="default"> <h:outputText value="Idle" />
+                </f:facet>
+                <f:facet name="start"> <h:outputText value="Please Wait" />
+                </f:facet>
+                <f:facet name="complete"> <h:outputText value="Done" />
+                </f:facet> 
+            </p:ajaxStatus>
+            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
             <div class="page-content-wrap">
                 <div class="row">
                     <div class="col-md-12">
                         <h:form class="form-horizontal">
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                                        <p:graphicImage name="/demo/images/ajaxloadingbar.gif" />
+                                    </p:dialog>
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">name</label>
                                         <div class="col-md-6 col-xs-12">                                            
@@ -47,7 +66,7 @@
                                                 </p:inputText>
                                             </div>                                            
                                             <p:message for="webSite"/>
-                                            <h:commandButton value="Save" action="#{addSerivceProviderBean.toEditPage()}" />
+                                            <h:commandButton value="Save"  action="#{addSerivceProviderBean.toEditPage()}" />
                                         </div>
                                     </div>
                                 </div>

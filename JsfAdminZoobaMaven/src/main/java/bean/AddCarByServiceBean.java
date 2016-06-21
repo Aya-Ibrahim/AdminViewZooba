@@ -154,7 +154,7 @@ public class AddCarByServiceBean implements Serializable {
 
         dYear = year.Years;
 
-        for (int i = Integer.parseInt(dYear.getMin_year()); i < Integer.parseInt(dYear.getMax_year()); i++) {
+        for (int i = Integer.parseInt(dYear.getMax_year()); i > Integer.parseInt(dYear.getMin_year()); i--) {
             myYears.add(i + "");
         }
 
@@ -306,8 +306,13 @@ public class AddCarByServiceBean implements Serializable {
                     selectedModel = model.getModel_name();
                     showTrims();
                     for (DtoTrim trim : dTrim) {
-                        selectedTrim = trim.getModel_trim();
-                        insertVehicle();
+                        try {
+                            selectedTrim = trim.getModel_trim();
+                            insertVehicle();
+                            Thread.sleep(10000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(AddCarByServiceBean.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
