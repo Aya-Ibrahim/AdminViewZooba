@@ -903,7 +903,7 @@ body.page-container-boxed .page-container {
 .x-navigation > li.xn-logo > a {
     border-bottom: 0px;
 }
-.x-navigation > li.xn-logo > a:first-child {
+.x-navigation > li.xn-logo > span {
     font-size: 25px;
     border-bottom: 0px;
     color: #FFF;
