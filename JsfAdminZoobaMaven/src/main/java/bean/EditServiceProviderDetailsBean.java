@@ -261,7 +261,7 @@ public class EditServiceProviderDetailsBean {
     }
 
     public List<String> getServices() {
-        List<String> returnedServices;
+          List<String> returnedServices;
         DataLayer dataLayer = new DataLayer();
         returnedServices = dataLayer.getAllServicesAsString();
         return returnedServices;
