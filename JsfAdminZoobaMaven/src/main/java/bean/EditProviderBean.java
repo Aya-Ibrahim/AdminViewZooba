@@ -23,7 +23,7 @@ import pojo.ServiceProviderServices;
  *
  * @author Ehab
  */
-@ManagedBean(name = "editProvider",eager = true)
+@ManagedBean(name = "editProvider", eager = true)
 @SessionScoped
 public class EditProviderBean {
 
@@ -53,7 +53,7 @@ public class EditProviderBean {
 
     public Date getServiceFrom() {
         return serviceFrom;
-}
+    }
 
     public void setServiceFrom(Date serviceFrom) {
         this.serviceFrom = serviceFrom;
@@ -284,6 +284,7 @@ public class EditProviderBean {
         longitude = serviceProvider.getAddress().getLongitude();
         latitude = serviceProvider.getAddress().getLatitude();
         id = serviceProvider.getAddress().getId();
+        phone = new ArrayList<>(serviceProvider.getServiceProviderPhones()).get(0).getPhone();
         selectedMakes = new String[50];
         selectedDays = new String[50];
         selectedServices = new String[50];
