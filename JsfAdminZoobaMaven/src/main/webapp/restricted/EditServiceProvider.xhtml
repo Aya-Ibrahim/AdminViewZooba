@@ -79,8 +79,12 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText type="text" value="#{editProviderDetailsBean.postalCode}"/>
-                                                        </div>
+                                                            <p:inputText id="postalcode" type="text" value="#{editProviderDetailsBean.postalCode}" validatorMessage="Invalid Postalcode">
+                                                            <f:validateRegex pattern="\d{5}"/>
+                                                            <f:ajax event="blur" render="postalcodeMessage" />
+                                                            </p:inputText>
+                                                        </div>   
+                                                        <p:message id="postalcodeMessage" for="postalcode"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -88,10 +92,8 @@
                                                     <div class="col-md-6 col-xs-12">                                            
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                            <p:inputText id="longitudePF" type="text" value="#{editProviderDetailsBean.longitude}">
-
-                                                            </p:inputText>
-                                                        </div>
+                                                            <p:inputText id="longitudePF" type="text" value="#{editProviderDetailsBean.longitude}"/>
+                                                        </div>                                            
 
                                                     </div>
                                                 </div>
@@ -261,7 +263,7 @@
                                                 <div class="col-md-6 col-xs-12">                                            
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                        <p:inputText id="phone" type="text" value="#{editProviderDetailsBean.phone}" validatorMessage="Invalid Phone Number" >
+                                                        <p:inputText id="phone" type="text" value="#{editProviderDetailsBean.phone}" validatorMessage="Invalid Phone Number"  required="true" requiredMessage="Phone must be inserted">
                                                             <f:validateRegex pattern="\d{10}"/>
                                                             <f:ajax event="blur" render="phoneMessage" />
                                                         </p:inputText>
