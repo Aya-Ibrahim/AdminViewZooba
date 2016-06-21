@@ -82,7 +82,7 @@ body {
     float: left;
     min-height: 100%;
     position: relative;
-    background: #1b1e24;
+    background: #feb756;
     /* SIDEBAR */
     /* END SIDEBAR */
     /* CONTENT */
@@ -269,7 +269,7 @@ body.page-container-boxed .page-container {
     z-index: 3;
 }
 .x-navigation {
-    background: #1b1e24;
+    background: #feb756;
     /* NAV LIST ELEMENT */
     /* END NAV LIST ELEMENT */
     /* NAV LIST FIRST ELEMENT */
@@ -292,6 +292,7 @@ body.page-container-boxed .page-container {
     padding: 0px;
     margin: 0px;
     position: relative;
+    text-align: center;
 }
 .x-navigation li > a {
     display: block;
@@ -303,7 +304,7 @@ body.page-container-boxed .page-container {
     font-weight: 400;
     padding: 15px 10px 15px 15px;
     text-decoration: none;
-    border-bottom: 1px solid #17191e;
+    border-bottom: 1px solid #feb756;
     vertical-align: text-bottom;
 }
 .x-navigation li > a .fa,
