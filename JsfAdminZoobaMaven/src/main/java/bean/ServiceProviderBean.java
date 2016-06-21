@@ -30,19 +30,19 @@ public class ServiceProviderBean implements Serializable {
     private DataModel<Object[]> model = new ListDataModel<>(handler.findServiceProviders());
     private transient DataModel<Make> list = new ListDataModel<>();
     String id;
-    @ManagedProperty(value = "#{editProviderDetailsBean}")
-    private EditServiceProviderDetailsBean editProviderDetailsBean;
+    @ManagedProperty(value = "#{editProvidersBean}")
+    private EditProviderBean editProviderBean;
 
     @ManagedProperty("#{services}")
     private ServiceBean bean;
     private List<String> serviceNames;
 
-    public EditServiceProviderDetailsBean getEditProviderDetailsBean() {
-        return editProviderDetailsBean;
+    public EditProviderBean getEditProviderDetailsBean() {
+        return editProviderBean;
     }
 
-    public void setEditProviderDetailsBean(EditServiceProviderDetailsBean editProviderDetailsBean) {
-        this.editProviderDetailsBean = editProviderDetailsBean;
+    public void setEditProviderBean(EditServiceProviderDetailsBean editProviderDetailsBean) {
+        this.editProviderBean = editProviderBean;
     }
 
     public DataModel<Object[]> getModel() {
@@ -86,10 +86,10 @@ public class ServiceProviderBean implements Serializable {
         id = params.get("id");
         facadePkg.DataLayer dataLayer = new facadePkg.DataLayer();
         ServiceProvider serviceProvider = dataLayer.getServiceProviderById(Integer.parseInt(id));
-
-        editProviderDetailsBean.setServiceProvider(serviceProvider);
-        editProviderDetailsBean.setAddress(serviceProvider.getAddress());
-        return "EditServiceProvider";
+        
+        editProviderBean.setServiceProvider(serviceProvider);
+        editProviderBean.fillData();
+        return "EditProviderDetails";
     }
 
     public void onload() {
