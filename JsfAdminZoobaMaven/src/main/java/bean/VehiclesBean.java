@@ -5,17 +5,13 @@
  */
 package bean;
 
-import reham.DataLayer;
+import facadePkg.DataLayer;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.ArrayDataModel;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import pojo.ModelFeaturesValues;

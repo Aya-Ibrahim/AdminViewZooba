@@ -5,20 +5,15 @@
  */
 package bean;
 
-import reham.DataLayer;
+import facadePkg.DataLayer;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import pojo.Make;
-import pojo.Model;
-import pojo.Trim;
 import pojo.VehicleModel;
-import pojo.Year;
 
 /**
  *
