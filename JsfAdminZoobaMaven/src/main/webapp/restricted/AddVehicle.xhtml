@@ -74,9 +74,12 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa  fa-calendar"></span></span>
-                                                <p:autoComplete value="#{serviceByInput.yearSelected}" completeMethod="#{serviceByInput.getYears}"/>
+                                                <p:autoComplete  id="year" value="#{serviceByInput.yearSelected}" completeMethod="#{serviceByInput.getYears}" required="true" requiredMessage="Year must be inserted" validatorMessage="Enter valid year">
+                                                    <f:validateRegex pattern="^\d{4}$" />
+                                                    <f:ajax event="blur" render="yearMessage" />
+                                                </p:autoComplete>
                                             </div>                                            
-
+                                            <p:message id="yearMessage" for="year"/>
                                         </div>
                                     </div>
 
@@ -85,9 +88,11 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-hourglass-end"></span></span>
-                                                <p:autoComplete value="#{serviceByInput.makeSelected}" completeMethod="#{serviceByInput.getMakes}"/>
+                                                <p:autoComplete id="make" value="#{serviceByInput.makeSelected}" completeMethod="#{serviceByInput.getMakes}" required="true" requiredMessage="Make must be inserted">
+                                                    <f:ajax event="blur" render="makeMessage" />  
+                                                </p:autoComplete>
                                             </div>            
-
+                                            <p:message id="makeMessage" for="make"/>
                                         </div>
                                     </div>
 
@@ -96,9 +101,11 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-car"></span></span>
-                                                <p:autoComplete value="#{serviceByInput.modelSelected}" completeMethod="#{serviceByInput.getModels}"/>
+                                                <p:autoComplete id="model" value="#{serviceByInput.modelSelected}" completeMethod="#{serviceByInput.getModels}" required="true" requiredMessage="Model must be inserted">
+                                                    <f:ajax event="blur" render="modelMessage" />
+                                                </p:autoComplete>   
                                             </div>
-
+                                            <p:message id="modelMessage" for="model"/>
                                         </div>
                                     </div>
                                     <div class="form-group">                                        
@@ -106,8 +113,11 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-car"></span></span>
-                                                <p:inputText type="text" value="#{serviceByInput.trimSelected}"/>                                            
+                                                <p:inputText id="trim" type="text" value="#{serviceByInput.trimSelected}" required="true" requiredMessage="Trim must be inserted">
+                                                    <f:ajax event="blur" render="trimMessage" />
+                                                </p:inputText>
                                             </div>
+                                            <p:message id="trimMessage" for="trim"/>
                                         </div>
                                         <p:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}" icon="ui-icon-check" />
                                         <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
