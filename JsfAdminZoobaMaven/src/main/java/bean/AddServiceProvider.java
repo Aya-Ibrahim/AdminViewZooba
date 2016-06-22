@@ -6,10 +6,10 @@
 package bean;
 
 import facadePkg.DataLayer;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import pojo.ServiceProvider;
 
 /**
@@ -23,10 +23,16 @@ public class AddServiceProvider {
     private String name;
     private String email;
     private String webSite;
-    private String branch;
+    private String mainBranchName;
+    private List<String> serviceProviders;
 
     @ManagedProperty(value = "#{enterProviderDetailsBean}")
     private EditServiceProviderDetailsBean editProviderDetailsBean;
+
+    public AddServiceProvider() {
+        DataLayer dataLayer = new DataLayer();
+        serviceProviders = dataLayer.getAllServiceProviders();
+    }
 
     public EditServiceProviderDetailsBean getEditProviderDetailsBean() {
         return editProviderDetailsBean;
@@ -36,12 +42,20 @@ public class AddServiceProvider {
         this.editProviderDetailsBean = editProviderDetailsBean;
     }
 
-    public String getBranch() {
-        return branch;
+    public List<String> getServiceProviders() {
+        return serviceProviders;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setServiceProviders(List<String> serviceProviders) {
+        this.serviceProviders = serviceProviders;
+    }
+
+    public String getMainBranchName() {
+        return mainBranchName;
+    }
+
+    public void setMainBranchName(String mainBranchName) {
+        this.mainBranchName = mainBranchName;
     }
 
     public String getName() {
@@ -75,8 +89,9 @@ public class AddServiceProvider {
         newServiceProvider.setEmail(email);
         newServiceProvider.setName(name);
         newServiceProvider.setWebsite(webSite);
-
-        dataLayer.insertServiceProvider(newServiceProvider);
+        ServiceProvider mainServicerovider = new ServiceProvider();
+        mainServicerovider.setName(mainBranchName);
+        dataLayer.insertServiceProvider(newServiceProvider, mainServicerovider);
 
         ServiceProvider serviceProvider = dataLayer.getServiceProviderByName(name);
         editProviderDetailsBean.initialize();

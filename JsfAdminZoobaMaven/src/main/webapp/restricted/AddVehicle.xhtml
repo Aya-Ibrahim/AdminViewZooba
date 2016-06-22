@@ -32,32 +32,33 @@
                                                 <p:panel>
                                                     <h:panelGrid columns="2" >
                                                         <p:outputLabel for="years" value="Year:   " />
-                                                        <p:selectOneMenu id="years" value="#{dropDownService.selectedYear}">
+                                                        <h:selectOneMenu id="years" value="#{dropDownService.selectedYear}" onchange="loadAllSelect" >
                                                             <p:ajax listener="#{dropDownService.showMakes()}" update="makes" />
                                                             <f:selectItem itemLabel="Select Year" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.myYears}" var="year"
                                                                            itemLabel="#{year}" itemValue="#{year}" />
-                                                        </p:selectOneMenu>
+                                                        </h:selectOneMenu>
+
                                                         <p:outputLabel for="makes" value="Make:   " />
-                                                        <p:selectOneMenu id="makes" value="#{dropDownService.selectedMake}"  >
+                                                        <h:selectOneMenu id="makes" value="#{dropDownService.selectedMake}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');" >
                                                             <p:ajax listener="#{dropDownService.showModels()}" update="models" />
                                                             <f:selectItem itemLabel="Select Make" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dMake}" var="make"
                                                                            itemLabel="#{make.make_display}" itemValue="#{model.make_display}"/>
-                                                        </p:selectOneMenu>
+                                                        </h:selectOneMenu>
                                                         <p:outputLabel for="models" value="Model:   " />
-                                                        <p:selectOneMenu id="models" value="#{dropDownService.selectedModel}" >
+                                                        <h:selectOneMenu id="models" value="#{dropDownService.selectedModel}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');" >
                                                             <p:ajax listener="#{dropDownService.showTrims()}" update="trims" />
                                                             <f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dModel}"  var="model"
                                                                            itemLabel="#{model.model_name}" itemValue="#{model.model_name}"/>
-                                                        </p:selectOneMenu>
+                                                        </h:selectOneMenu>
                                                         <p:outputLabel for="trims" value="Trim:   " />
-                                                        <p:selectOneMenu id="trims" value="#{dropDownService.selectedTrim}" >
+                                                        <h:selectOneMenu id="trims" value="#{dropDownService.selectedTrim}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');">
                                                             <f:selectItem itemLabel="Select Trim" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dTrim}" var="trim"
                                                                            itemLabel="#{trim.model_trim}" itemValue="#{trim.model_trim}"/>
-                                                        </p:selectOneMenu>
+                                                        </h:selectOneMenu>
                                                     </h:panelGrid>
                                                     <p:separator />
                                                     <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
@@ -66,6 +67,7 @@
                                             </h:form>
                                         </p:tab>
                                     </p:accordionPanel>
+                                    
                                 </div>
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -94,7 +96,17 @@
                                             <p:message id="makeMessage" for="make"/>
                                         </div>
                                     </div>
+                                    <script>
+                                        function loadAllSelect()
+                                        {
+                                            PF('table .ui-helper-hidden-accessible').css('overflow', 'visible');
+                                            PF('table .ui-helper-hidden-accessible').css('clip', 'auto');
 
+                                            $('table .ui-helper-hidden-accessible').css('overflow', 'visible');
+                                            $('table .ui-helper-hidden-accessible').css('clip', 'auto');
+                                            console.log("Chnaged")
+                                        }
+                                    </script>
                                     <div class="form-group">                                        
                                         <label class="col-md-3 col-xs-12 control-label">Model</label>
                                         <div class="col-md-6 col-xs-12">
@@ -122,7 +134,7 @@
                                         <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" class="savebutton" />
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </h:form>
                     </div>
@@ -133,6 +145,7 @@
             <!-- MESSAGE BOX-->
 
         </ui:define>
+
     </ui:composition>
 
 
