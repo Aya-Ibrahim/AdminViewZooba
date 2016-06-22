@@ -37,6 +37,7 @@ import pojo.Make;
 import pojo.Model;
 import pojo.ModelFeaturesValues;
 import pojo.Trim;
+import pojo.VehicleModel;
 import pojo.Year;
 
 /**
@@ -51,6 +52,7 @@ public class AddCarByServiceBean implements Serializable {
     ModelsBean model;
     YearsBean year;
     TrimsBean trim;
+    VehicleModel vehicleModel;
     private List<DtoMake> dMake;
     private List<DtoModel> dModel;
     private String selectedMake;
@@ -232,7 +234,7 @@ public class AddCarByServiceBean implements Serializable {
         Model model = new Model(make, selectedModel, selectedModel);
         Year year = new Year(Integer.parseInt(selectedYear));
         Trim trim = new Trim(selectedTrim);
-        dataLayer.insertVehicle(make, model, year, trim);
+        vehicleModel = dataLayer.insertVehicle(make, model, year, trim);
         insertCarDetails();
 
     }
@@ -279,6 +281,7 @@ public class AddCarByServiceBean implements Serializable {
                 String result = (String) method.invoke(myTrim, null);
 
                 ModelFeaturesValues modelFeaturesValues = new ModelFeaturesValues(carFeatures, result);
+                modelFeaturesValues.getVehicleModels().add(vehicleModel);
                 modelFeatureValueDao.create(modelFeaturesValues);
 
             } catch (NoSuchMethodException | SecurityException ex) {

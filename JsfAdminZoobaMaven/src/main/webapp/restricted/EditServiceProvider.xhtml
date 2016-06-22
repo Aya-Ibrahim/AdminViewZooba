@@ -8,6 +8,17 @@
     <ui:composition template="../template/AdminTemplate.xhtml">
         <!-- END X-NAVIGATION VERTICAL -->                     
         <ui:define name="myBody">
+            <style>
+                .ui-tabs .ui-tabs-nav.ui-widget-header
+                {
+                    height: 10px;
+                }
+            </style>
+             <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service Provider</a></li>
+                <li><a href="#">Edit</a></li>
+            </ul>
             <p:tabView prependId="false">
                 <div class="page-content-wrap">
                     <div class="row">
@@ -384,5 +395,4 @@
         </ui:define>
 
     </ui:composition>
-
 </html>

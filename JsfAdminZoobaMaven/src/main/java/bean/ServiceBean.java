@@ -12,6 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import pojo.Service;
 import facadePkg.DataLayer;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  *
@@ -24,6 +26,13 @@ public class ServiceBean implements Serializable{
     private List<Service> serviceList;
     private String name;
     List<String> names=new ArrayList();
+ private DataModel<Service> services;
+  
+    public ServiceBean() {
+     serviceList=handler.getServices();
+     
+      services=new ListDataModel<>(serviceList);
+    }
 
      public List<String> getServiceNames() {
        serviceList=handler.getServices();
@@ -33,5 +42,13 @@ public class ServiceBean implements Serializable{
             names.add(name);
        }     
        return names;
+    }
+
+    public DataModel<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(DataModel<Service> services) {
+        this.services = services;
     }
 }
