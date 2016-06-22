@@ -5,6 +5,7 @@
  */
 package DTO;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -12,7 +13,7 @@ import javax.faces.bean.ManagedBean;
  * @author Ehab
  */
 
-public class DtoMake {
+public class DtoMake implements Serializable{
     
     String make_id;
     String make_display;
