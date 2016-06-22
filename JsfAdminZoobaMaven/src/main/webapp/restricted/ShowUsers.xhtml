@@ -9,7 +9,10 @@
 
                 <ui:define name="myBody">
                     
-                    <h:body>
+                  <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Users</a></li>
+            </ul>  
         <h:form id="form">
             <p:dataTable var="user" value="#{userBean.users}" paginator="true" rows="10" widgetVar="usersTable"
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
@@ -44,7 +47,6 @@
            
                 
    </h:form>
-    </h:body>
                 </ui:define>
 
     </ui:composition>

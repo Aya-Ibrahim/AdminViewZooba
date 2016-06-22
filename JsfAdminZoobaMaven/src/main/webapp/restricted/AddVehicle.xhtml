@@ -13,9 +13,8 @@
             <!-- START BREADCRUMB -->
             <ul class="breadcrumb">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Forms Stuff</a></li>
-                <li><a href="#">Form Layout</a></li>
-                <li class="active">One Column</li>
+                <li><a href="#">Vehicles</a></li>
+                <li><a href="#">Add</a></li>
             </ul>
             <!-- END BREADCRUMB -->
 
@@ -61,8 +60,8 @@
                                                         </p:selectOneMenu>
                                                     </h:panelGrid>
                                                     <p:separator />
-                                                    <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" />
-                                                    <p:commandButton value="insert All in WebService" update="msgs" actionListener="#{dropDownService.insertAll()}" icon="ui-icon-check" />
+                                                    <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
+                                                    <p:commandButton value="insert All in WebService" update="msgs" actionListener="#{dropDownService.insertAll()}" icon="ui-icon-check" class="savebutton" />
                                                 </p:panel>
                                             </h:form>
                                         </p:tab>
@@ -119,14 +118,11 @@
                                             </div>
                                             <p:message id="trimMessage" for="trim"/>
                                         </div>
-                                        <p:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}" icon="ui-icon-check" />
-                                        <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
+                                        <p:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
+                                        <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" class="savebutton" />
                                     </div>
                                 </div>
-                                <div class="panel-footer">
-                                    <button class="btn btn-default">Clear Form</button>                                    
-                                    <button class="btn btn-primary pull-right">Submit</button>
-                                </div>
+                                
                             </div>
                         </h:form>
                     </div>

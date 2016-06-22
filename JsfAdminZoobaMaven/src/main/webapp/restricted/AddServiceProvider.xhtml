@@ -8,6 +8,15 @@
         <!-- END X-NAVIGATION VERTICAL -->                     
 
         <ui:define name="myBody">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service Provider</a></li>
+                <li><a href="#">Add</a></li>
+            </ul>
+            <!-- END BREADCRUMB -->
+
+            <!-- PAGE CONTENT WRAPPER -->
+           
             <p:ajaxStatus> 
                 <f:facet name="prestart">
                     <h:outputText value="Starting..." /> </f:facet>
@@ -70,9 +79,13 @@
                                                 </p:inputText>
                                             </div>                                            
                                             <p:message id="webSiteMessage" for="webSite"/>
-                                            <h:commandButton value="Save"  action="#{addSerivceProviderBean.toEditPage()}" />
-                                        </div>
+                                          
+                                           </div>
                                     </div>
+                                       <div class="but"> 
+                                           
+                                    <p:commandButton value="Save"  class="savebutton" action="#{addSerivceProviderBean.toEditPage()}" icon="ui-icon-check"/>
+                                       </div> 
                                 </div>
                             </div>
                         </h:form>

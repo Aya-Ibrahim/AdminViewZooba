@@ -10,41 +10,41 @@
             #first 
             {
                 width: 200px;
-                padding-top: 330px;
+                padding-top: 250px;
                 padding-left: 20px;
-                border-color: #000;
+                border-color: white;
 
             }
             .ui-accordion .ui-accordion-content {
                 padding: 5px;
-                color: white;
-                background: #000;
+                color: red;
+                background: white;
                 font-size: small;
             }
 
             #first .ui-accordion-header 
             {
-                background: #080a0e;
-                color: #8b91a0;
+                background: white;
+                color: #78bf7a;
                 font-size: medium;
 
             }
             #first .ui-state-active
             {
-                background: #1caf9a;
+                background: #78bf7a;
                 color: white;
             }
             .ui-widget-content
             {
-                border: 1px solid #000;
+                border: 1px solid white;
             }
             .ui-widget-content a
             {
-                color: white;
+                color: #ec6e35;
             }
             .ui-accordion .ui-accordion-header.ui-state-default
             {
-                border: 1px solid #000;
+                border: 1px solid white;
             }
             #first #serviceoccordion .ui-accordion
             {
@@ -71,11 +71,15 @@
 
 
             }
+            .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-state-error
+            {
+                color: black;
+            }
         </style>
 
     </h:head>
     <h:body>
-        <div style="width: 200px;">
+        <div style="width: 200px; height: 750px;">
             <form>
                 <p:accordionPanel activeIndex="0" id="first"> ̰
                     <p:tab title="Service Providers">
