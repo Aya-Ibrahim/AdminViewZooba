@@ -7,7 +7,11 @@
         <!-- END X-NAVIGATION VERTICAL -->                     
 
         <ui:define name="myBody">
-
+     
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service Providers</a></li>
+            </ul>
             <h:body onload="#{serviceprovider.onload()}">
                 <h:form id="form">
                     <p:dataTable var="serviceProvider" value="#{serviceprovider.model}" paginator="true" rows="10" widgetVar="carsTable"

@@ -8,6 +8,13 @@
     <ui:composition template="../template/AdminTemplate.xhtml">
         <!-- END X-NAVIGATION VERTICAL -->                     
         <ui:define name="myBody">
+            <p:tabView prependId="false">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service Provider</a></li>
+                <li><a href="#">details</a></li>
+            </ul>
+           
             <p:tabView>
                 <div class="page-content-wrap">
                     <div class="row">
@@ -120,8 +127,8 @@
                                                         <h:outputLabel for="title" value="Title:" />
                                                         <p:inputText id="title" value="#{mapBean.title}" />
                                                         <f:facet name="footer">
-                                                            <p:commandButton value="Add" oncomplete="markerAddComplete()" />
-                                                            <p:commandButton value="Cancel" onclick="return cancel()" />
+                                                            <p:commandButton value="Add" oncomplete="markerAddComplete()" class="savebutton"/>
+                                                            <p:commandButton value="Cancel" onclick="return cancel()" class="savebutton"/>
                                                         </f:facet>
                                                     </h:panelGrid>
                                                     <h:inputHidden id="lat" value="#{mapBean.lat}" />

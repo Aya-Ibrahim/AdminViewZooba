@@ -23,6 +23,7 @@ public class AddServiceProvider {
     private String name;
     private String email;
     private String webSite;
+    private String branch;
 
     @ManagedProperty(value = "#{enterProviderDetailsBean}")
     private EditServiceProviderDetailsBean editProviderDetailsBean;
@@ -33,6 +34,14 @@ public class AddServiceProvider {
 
     public void setEditProviderDetailsBean(EditServiceProviderDetailsBean editProviderDetailsBean) {
         this.editProviderDetailsBean = editProviderDetailsBean;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
     }
 
     public String getName() {

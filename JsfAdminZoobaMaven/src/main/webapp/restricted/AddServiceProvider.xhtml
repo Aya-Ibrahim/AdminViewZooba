@@ -8,6 +8,15 @@
         <!-- END X-NAVIGATION VERTICAL -->                     
 
         <ui:define name="myBody">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service Provider</a></li>
+                <li><a href="#">Add</a></li>
+            </ul>
+            <!-- END BREADCRUMB -->
+
+            <!-- PAGE CONTENT WRAPPER -->
+           
             <p:ajaxStatus> 
                 <f:facet name="prestart">
                     <h:outputText value="Starting..." /> </f:facet>
@@ -66,13 +75,26 @@
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <p:inputText id="webSite" type="text" value="#{addSerivceProviderBean.webSite}" validatorMessage="Invalid URL format">
                                                     <f:validateRegex pattern="^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$" />
-                                                     <f:ajax event="blur" render="webSiteMessage" />
+                                                    <f:ajax event="blur" render="webSiteMessage" />
                                                 </p:inputText>
-                                            </div>                                            
+                                            </div>
                                             <p:message id="webSiteMessage" for="webSite"/>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <p:selectOneRadio id="customRadio" value="#{addSerivceProviderBean.branch}" layout="custom">
+                                                    <f:selectItem itemLabel="Main" itemValue="false" />
+                                                    <f:selectItem itemLabel="Branch" itemValue="true" />
+                                                </p:selectOneRadio>
+                                                <p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+                                                
+                                            </div>
                                             <h:commandButton value="Save"  action="#{addSerivceProviderBean.toEditPage()}" />
                                         </div>
                                     </div>
+                                       <div class="but"> 
+                                           
+                                    <p:commandButton value="Save"  class="savebutton" action="#{addSerivceProviderBean.toEditPage()}" icon="ui-icon-check"/>
+                                       </div> 
                                 </div>
                             </div>
                         </h:form>

@@ -10,27 +10,34 @@
             <h:body onload="#{vehicle.onload()}">
                 <!-- END BREADCRUMB -->                                                
 
-                <!-- PAGE TITLE -->
-                <div class="page-title">                    
-                    <h2><span class="fa fa-users"></span> Car Details <small>139 Cars </small></h2>
-                </div>
-                <!-- END PAGE TITLE -->                
-
+     <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Vehicles</a></li>
+            </ul>
                 <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                  
                 <h:form id="form">
-                    <p:dataTable var="car" value="#{vehicle.model}" paginator="true" rows="10"
+                    <p:dataTable var="car" value="#{vehicle.model}" paginator="true" rows="10" widgetVar="carTable"
                                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-
-                        <p:column headerText="Manufacturer" >
+  <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search :" />
+                <p:inputText id="globalFilter" onkeyup="PF('carTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+                        <p:column headerText="Manufacturer" filterBy="#{car.model.make.name}" filterStyle="display:none" filterMatchMode="startsWith">
                             <h:outputText value="#{car.model.make.name}" />
                         </p:column>
-                        <p:column headerText="Model">
+                        <p:column headerText="Model" filterBy="#{car.model.name}" filterStyle="display:none" filterMatchMode="startsWith">
                             <h:outputText value="#{car.model.name}" />
                         </p:column>
-                        <p:column headerText="Year">
+                        <p:column headerText="Year" filterBy="#{car.year.name}" filterStyle="display:none" filterMatchMode="startsWith">
                             <h:outputText value="#{car.year.name}" />
                         </p:column>
-                        <p:column headerText="Trim">
+                        <p:column headerText="Trim" filterBy="#{car.trim.name}" filterStyle="display:none" filterMatchMode="startsWith">
                             <h:outputText value="#{car.trim.name}" />
                         </p:column>
                         <p:column headerText="Show Features">
@@ -51,6 +58,9 @@
                         </p:column>   
                     </p:dataTable>
                 </h:form>
+                    </div>
+                </div>
+                </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                                 
             </h:body>
         </ui:define>

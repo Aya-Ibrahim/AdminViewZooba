@@ -16,6 +16,29 @@
             {
                 text-align: right;
             }
+            span.xn-text
+            {
+                font-family: Lucida Console;
+                font-size: 20px;
+            }
+        
+                .savebutton
+                {
+                    background: #78bf7a !important;
+                    color: white !important;
+                }
+                .but
+                {
+                    padding-left: 600px;
+                }
+              .ui-datatable thead th
+                {
+                    background:  #ec6e35;;
+                    border-color: white;
+                    color: white;
+                    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+                }
         </style>
         <!-- CSS INCLUDE --> 
         <h:outputStylesheet library="css" name="bootstrap/bootstrap.min.css"/>
@@ -33,18 +56,17 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <span>Admin </span>
+                        <span>Admin Panel</span>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
 
                         <div class="profile">
                             <div class="profile-image">
-                                <img src="../resources/img/picon.png" alt="Admin"/>
+                                <img src="../resources/img/zoba.png" alt="Admin"/>
                             </div>
                         </div>                                                                        
                     </li>
-                    <li class="xn-title">Navigation</li>
                     <li class="active">
 
                         <span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span>                     
@@ -58,13 +80,6 @@
 
             <!-- PAGE CONTENT -->
             <div class="page-content">
-
-                <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li class="active">Dashboard</li>
-                </ul>
-                <!-- END BREADCRUMB -->                       
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <ui:insert name="myBody">Error in loading the page .... </ui:insert>
