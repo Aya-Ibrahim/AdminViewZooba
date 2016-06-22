@@ -5,11 +5,12 @@
  */
 package DTO;
 
+import java.io.Serializable;
 /**
  *
  * @author Ehab
  */
-public class DtoTrim {
+public class DtoTrim implements Serializable{
 
     String model_id;
     String model_make_id;

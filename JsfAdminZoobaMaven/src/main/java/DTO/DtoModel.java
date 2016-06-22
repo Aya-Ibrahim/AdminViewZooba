@@ -5,11 +5,13 @@
  */
 package DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ehab
  */
-public class DtoModel {
+public class DtoModel implements Serializable{
     
     String model_name;
     String model_make_id;
