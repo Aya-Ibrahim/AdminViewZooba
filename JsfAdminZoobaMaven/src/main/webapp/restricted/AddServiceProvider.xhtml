@@ -66,10 +66,19 @@
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <p:inputText id="webSite" type="text" value="#{addSerivceProviderBean.webSite}" validatorMessage="Invalid URL format">
                                                     <f:validateRegex pattern="^(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$" />
-                                                     <f:ajax event="blur" render="webSiteMessage" />
+                                                    <f:ajax event="blur" render="webSiteMessage" />
                                                 </p:inputText>
-                                            </div>                                            
+                                            </div>
                                             <p:message id="webSiteMessage" for="webSite"/>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
+                                                <p:selectOneRadio id="customRadio" value="#{addSerivceProviderBean.branch}" layout="custom">
+                                                    <f:selectItem itemLabel="Main" itemValue="false" />
+                                                    <f:selectItem itemLabel="Branch" itemValue="true" />
+                                                </p:selectOneRadio>
+                                                <p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+                                                
+                                            </div>
                                             <h:commandButton value="Save"  action="#{addSerivceProviderBean.toEditPage()}" />
                                         </div>
                                     </div>

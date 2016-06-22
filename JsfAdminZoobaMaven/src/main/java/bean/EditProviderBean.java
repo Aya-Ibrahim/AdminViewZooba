@@ -7,6 +7,7 @@ package bean;
 
 import facadePkg.DataLayer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -44,12 +45,39 @@ public class EditProviderBean {
     private int id;
     private String phone;
     private String[] selectedMakes;
+    private String[] selectedMakesBeforeEdit;
     private String[] selectedDays;
+    private String[] selectedDaysBeforeEdit;
     private String[] selectedServices;
+    private String[] selectedServicesBeforeEdit;
     private Date from;
     private Date to;
     private Date serviceFrom;
     private Date serviceTo;
+
+    public String[] getSelectedMakesBeforeEdit() {
+        return selectedMakesBeforeEdit;
+    }
+
+    public void setSelectedMakesBeforeEdit(String[] selectedMakesBeforeEdit) {
+        this.selectedMakesBeforeEdit = selectedMakesBeforeEdit;
+    }
+
+    public String[] getSelectedDaysBeforeEdit() {
+        return selectedDaysBeforeEdit;
+    }
+
+    public void setSelectedDaysBeforeEdit(String[] selectedDaysBeforeEdit) {
+        this.selectedDaysBeforeEdit = selectedDaysBeforeEdit;
+    }
+
+    public String[] getSelectedServicesBeforeEdit() {
+        return selectedServicesBeforeEdit;
+    }
+
+    public void setSelectedServicesBeforeEdit(String[] selectedServicesBeforeEdit) {
+        this.selectedServicesBeforeEdit = selectedServicesBeforeEdit;
+    }
 
     public Date getServiceFrom() {
         return serviceFrom;
@@ -244,7 +272,19 @@ public class EditProviderBean {
 
     public void insertMakes() {
         DataLayer dataLayer = new DataLayer();
-        dataLayer.getMakesFromStringArray(selectedMakes, serviceProvider);
+        List<String> makeListBefore = (List<String>) Arrays.asList(selectedMakesBeforeEdit);
+        for (String makeName : selectedMakes) {
+            if (!makeListBefore.contains(makeName)) {
+                dataLayer.insertMakeForServiceProvider(makeName, serviceProvider);
+            }
+        }
+        List<String> makeListAfter = (List<String>) Arrays.asList(selectedMakes);
+        for (String makeName : selectedMakesBeforeEdit) {
+            if (!makeListAfter.contains(makeName)) {
+                dataLayer.deleteMakeForServiceProvider(makeName, serviceProvider);
+            }
+        }
+        selectedMakesBeforeEdit = selectedMakes.clone();
     }
 
     public List<String> getDays() {
@@ -272,7 +312,20 @@ public class EditProviderBean {
 
     public void insertServices() {
         DataLayer dataLayer = new DataLayer();
-        dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider, serviceFrom, serviceTo);
+        List<String> serviceListBefore = (List<String>) Arrays.asList(selectedServicesBeforeEdit);
+        for (String serviceName : selectedServices) {
+            if (!serviceListBefore.contains(serviceName)) {
+                dataLayer.insertServiceForServiceProvider(serviceName, serviceProvider, serviceFrom, serviceTo);
+            }
+        }
+        List<String> serviceListAfter = (List<String>) Arrays.asList(selectedServices);
+        for (String serviceName : selectedServicesBeforeEdit) {
+            if (!serviceListAfter.contains(serviceName)) {
+                dataLayer.deleteServiceForServiceProvider(serviceName, serviceProvider, serviceFrom, serviceTo);
+            }
+        }
+        selectedServicesBeforeEdit = selectedServices.clone();
+
     }
 
     public void fillData() {
@@ -285,9 +338,14 @@ public class EditProviderBean {
         latitude = serviceProvider.getAddress().getLatitude();
         id = serviceProvider.getAddress().getId();
         phone = new ArrayList<>(serviceProvider.getServiceProviderPhones()).get(0).getPhone();
+
         selectedMakes = new String[50];
+        selectedMakesBeforeEdit = new String[50];
         selectedDays = new String[50];
+        selectedDaysBeforeEdit = new String[50];
         selectedServices = new String[50];
+        selectedServicesBeforeEdit = new String[50];
+
         List<Make> makeListEdit = new ArrayList<>(serviceProvider.getMakes());
         for (int i = 0; i < makeListEdit.size(); i++) {
             selectedMakes[i] = makeListEdit.get(i).getName();
@@ -300,5 +358,8 @@ public class EditProviderBean {
         for (int i = 0; i < serviceListEdit.size(); i++) {
             selectedServices[i] = serviceListEdit.get(i).getService().getName();
         }
+        selectedDaysBeforeEdit = selectedDays.clone();
+        selectedMakesBeforeEdit = selectedMakes.clone();
+        selectedServicesBeforeEdit = selectedServices.clone();
     }
 }
