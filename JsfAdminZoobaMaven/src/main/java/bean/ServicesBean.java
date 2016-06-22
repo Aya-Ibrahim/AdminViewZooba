@@ -9,6 +9,7 @@ import DTO.TypeAndUnit;
 import facadePkg.DataLayer;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,10 +25,14 @@ public class ServicesBean implements Serializable {
     private String name;
     private String selectedType;
     private String selectedUnit;
+    private int index;
     private List<TypeAndUnit> typeAndUnits;
+    TypeAndUnit tau;
+    int i;
 
     public ServicesBean() {
         typeAndUnits = new ArrayList<>();
+        i = 0;
 
     }
 
@@ -37,6 +42,14 @@ public class ServicesBean implements Serializable {
 
     public void setTypeAndUnits(List<TypeAndUnit> typeAndUnits) {
         this.typeAndUnits = typeAndUnits;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getSelectedUnit() {
@@ -78,10 +91,22 @@ public class ServicesBean implements Serializable {
     }
 
     public void addToTypeList() {
-        TypeAndUnit tau = new TypeAndUnit();
+        tau = new TypeAndUnit();
         tau.setTypeName(selectedType);
         tau.setUnitName(selectedUnit);
+        tau.setIndex(i++);
         typeAndUnits.add(tau);
     }
 
+    public void deleteFromTypeList(int index) {
+        Iterator<TypeAndUnit> list = typeAndUnits.iterator();
+
+        while (list.hasNext()) {
+
+            TypeAndUnit value = list.next();
+            if (value.getIndex() == index) {
+                list.remove();
+            }
+        }
+    }
 }
