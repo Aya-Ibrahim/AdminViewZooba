@@ -272,19 +272,20 @@ public class EditProviderBean {
 
     public void insertMakes() {
         DataLayer dataLayer = new DataLayer();
-        List<String> makeListBefore = (List<String>) Arrays.asList(selectedMakesBeforeEdit);
-        for (String makeName : selectedMakes) {
-            if (!makeListBefore.contains(makeName)) {
-                dataLayer.insertMakeForServiceProvider(makeName, serviceProvider);
-            }
-        }
-        List<String> makeListAfter = (List<String>) Arrays.asList(selectedMakes);
-        for (String makeName : selectedMakesBeforeEdit) {
-            if (!makeListAfter.contains(makeName)) {
-                dataLayer.deleteMakeForServiceProvider(makeName, serviceProvider);
-            }
-        }
-        selectedMakesBeforeEdit = selectedMakes.clone();
+//        List<String> makeListBefore = (List<String>) Arrays.asList(selectedMakesBeforeEdit);
+//        for (String makeName : selectedMakes) {
+//            if (!makeListBefore.contains(makeName)) {
+//                dataLayer.insertMakeForServiceProvider(makeName, serviceProvider);
+//            }
+//        }
+//        List<String> makeListAfter = (List<String>) Arrays.asList(selectedMakes);
+//        for (String makeName : selectedMakesBeforeEdit) {
+//            if (!makeListAfter.contains(makeName)) {
+//                dataLayer.deleteMakeForServiceProvider(makeName, serviceProvider);
+//            }
+//        }
+//        selectedMakesBeforeEdit = selectedMakes.clone();
+        dataLayer.getMakesFromStringArray(selectedMakes, serviceProvider);
     }
 
     public List<String> getDays() {
@@ -340,7 +341,7 @@ public class EditProviderBean {
         phone = new ArrayList<>(serviceProvider.getServiceProviderPhones()).get(0).getPhone();
 
         selectedMakes = new String[50];
-        selectedMakesBeforeEdit = new String[50];
+//        selectedMakesBeforeEdit = new String[50];
         selectedDays = new String[50];
         selectedDaysBeforeEdit = new String[50];
         selectedServices = new String[50];
@@ -359,7 +360,7 @@ public class EditProviderBean {
             selectedServices[i] = serviceListEdit.get(i).getService().getName();
         }
         selectedDaysBeforeEdit = selectedDays.clone();
-        selectedMakesBeforeEdit = selectedMakes.clone();
+//        selectedMakesBeforeEdit = selectedMakes.clone();
         selectedServicesBeforeEdit = selectedServices.clone();
     }
 }

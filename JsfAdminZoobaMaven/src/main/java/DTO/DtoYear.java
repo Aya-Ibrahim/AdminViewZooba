@@ -5,11 +5,13 @@
  */
 package DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ehab
  */
-public class DtoYear {
+public class DtoYear implements Serializable{
     
     String min_year;
     String max_year;
