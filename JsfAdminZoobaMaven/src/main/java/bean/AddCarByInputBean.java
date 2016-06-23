@@ -9,8 +9,10 @@ import facadePkg.DataLayer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojo.Make;
 import pojo.Model;
 import pojo.Trim;
@@ -22,7 +24,7 @@ import pojo.Year;
  */
 @ManagedBean(name = "serviceByInput")
 @SessionScoped
-public class AddCarByInputBean implements Serializable{
+public class AddCarByInputBean implements Serializable {
 
     private String makeSelected;
     private String modelSelected;
@@ -37,6 +39,8 @@ public class AddCarByInputBean implements Serializable{
         Year year = new Year(Integer.parseInt(yearSelected));
         Trim trim = new Trim(trimSelected);
         dataLayer.insertVehicle(make, model, year, trim);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Vehicle", "Vehicle Inserted"));
     }
 
     public List<String> getYears(String str) {
