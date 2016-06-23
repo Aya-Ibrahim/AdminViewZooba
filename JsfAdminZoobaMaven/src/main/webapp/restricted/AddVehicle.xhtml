@@ -62,7 +62,7 @@
                                                     </h:panelGrid>
                                                     <p:separator />
                                                     <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
-                                                    <p:commandButton value="insert All in WebService" update="msgs" actionListener="#{dropDownService.insertAll()}" icon="ui-icon-check" class="savebutton" />
+                                                    <p:commandButton value="insert All in WebService" update="msgs" actionListener="#{dropDownService.insertAll()}" icon="ui-icon-check" class="savebutton" immediate="true"/>
                                                 </p:panel>
                                             </h:form>
                                         </p:tab>

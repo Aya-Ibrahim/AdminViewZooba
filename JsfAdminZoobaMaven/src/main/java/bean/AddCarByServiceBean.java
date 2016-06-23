@@ -64,6 +64,7 @@ public class AddCarByServiceBean implements Serializable {
     private DtoYear dYear;
     private List<DtoTrim> dTrim;
     private List<String> myYears;
+    static int x = 0;
 
     public List<DtoMake> getdMake() {
         return dMake;
@@ -161,8 +162,10 @@ public class AddCarByServiceBean implements Serializable {
         for (int i = Integer.parseInt(dYear.getMax_year()); i > Integer.parseInt(dYear.getMin_year()); i--) {
             myYears.add(i + "");
         }
-
-//        insertCarFeatures();
+        if (x == 0) {
+            insertCarFeatures();
+            x++;
+        }
     }
 
     public void showMakes() {
