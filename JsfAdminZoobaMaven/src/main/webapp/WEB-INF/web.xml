@@ -51,7 +51,7 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-<!--    <security-role>
+  <security-role>
         <description>
             All persons belong to that role have access to restricted application area.
         </description>
@@ -74,7 +74,7 @@
             <form-login-page>/faces/login.xhtml</form-login-page>
             <form-error-page>/faces/login.xhtml</form-error-page>
         </form-login-config>
-    </login-config>-->
+    </login-config>
     
     
     <session-config>

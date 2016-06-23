@@ -2,215 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="../template/AdminTemplate.xhtml">
         <!-- END X-NAVIGATION VERTICAL -->                     
 
         <ui:define name="myBody">
+            <style>
+                .ui-panelgrid .ui-widget
+                {
+                  margin-left: 100px;
+                    margin-top: 100px;  
+                }
+            </style>
             <!-- PAGE CONTENT WRAPPER -->
-            <div class="page-content-wrap">
-
-                <!-- START WIDGETS -->                    
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <!-- START WIDGET SLIDER -->
-                        <div class="widget widget-default widget-carousel">
-                            <div class="owl-carousel" id="owl-example">
-                                <div>                                    
-                                    <div class="widget-title">Total no of service providers</div>                                                                        
-                                   
-                                    <div class="widget-int">3,548</div>
-                                </div>
-                                 <div>                                    
-                                    <div class="widget-title">Total no of service centers</div>                                                                        
-                                   
-                                    <div class="widget-int">1,528</div>
-                                </div>
-                               <div>                                    
-                                    <div class="widget-title">Total no of car towings</div>                                                                        
-                                   
-                                    <div class="widget-int">1,020</div>
-                                </div>
-                                <div>                                    
-                                    <div class="widget-title">Total no of gas stations</div>                                                                        
-                                   
-                                    <div class="widget-int">920</div>
-                                </div>
-                            </div>                            
-                            <div class="widget-controls">                                
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                            </div>                             
-                        </div>         
-                        <!-- END WIDGET SLIDER -->
-
-                    </div>
-                    <div class="col-md-4">
-
-                        <!-- START WIDGET MESSAGES -->
-                        <div class="widget widget-default widget-item-icon" onclick="location.href = 'pages-messages.html';">
-                            <div class="widget-item-left">
-                                <span class="fa fa-user"></span>
-                            </div>                             
-                            <div class="widget-data">
-                                
-                                <div class="widget-title">No of Registered Users</div>
-                                    <div class="widget-int">5000</div>
-                            </div>      
-                            <div class="widget-controls">                                
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                                 
-                            </div>
-                        </div>                            
-                        <!-- END WIDGET MESSAGES -->
-
-                    </div>
-                   
-                    <div class="col-md-4">
-
-                        <!-- START WIDGET CLOCK -->
-                        <div class="widget widget-info widget-padding-sm">
-                            <div class="widget-big-int plugin-clock">00:00</div>                            
-                            <div class="widget-subtitle plugin-date">Loading...</div>
-                            <div class="widget-controls">                                
-                                <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
-                            </div>                            
-                            <div class="widget-buttons widget-c3">
-                                <div class="col">
-                                    <a href="#"><span class="fa fa-clock-o"></span></a>
-                                </div>
-                                <div class="col">
-                                    <a href="#"><span class="fa fa-bell"></span></a>
-                                </div>
-                                <div class="col">
-                                    <a href="#"><span class="fa fa-calendar"></span></a>
-                                </div>
-                            </div>                            
-                        </div>                        
-                        <!-- END WIDGET CLOCK -->
-
-                    </div>
-                </div>
-                <!-- END WIDGETS -->                    
-
-                <div class="row">
-                    <div class="col-md-4">
-
-                        <!-- START USERS ACTIVITY BLOCK -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title-box">
-                                    <h3>Service provider Activity</h3>
-                                    <span>Latest Added</span>
-                                </div>                                    
-                                <ul class="panel-controls" style="margin-top: 2px;">
-                                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-plus"></span></a></li>
-                                    <li><a href="#" class="panel-refresh"><span class="fa fa-list"></span></a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>                                        
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                        </ul>                                        
-                                    </li>                                        
-                                </ul>                                    
-                            </div>                                
-                            <div class="panel-body padding-0">
-                                <div>
-                                    <ul class="list-group border-bottom">
-                                        <li class="list-group-item">service 1</li>
-                                        <li class="list-group-item">service 2</li>
-                                       
-                                    </ul>   
-                                </div>
-                                <div class="chart-holder" id="dashboard-bar-1" >
-  <p:chart type="pie" model="#{chartManagedBean.pieModel2}" style="width:300px;height:150px" />    
-                                </div>
-                            </div>                                    
-                        </div>
-
-                        <!-- END USERS ACTIVITY BLOCK -->
-
-                    </div>
-                <div class="col-md-4">
-
-                        <!-- START USERS ACTIVITY BLOCK -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title-box">
-                                    <h3>Car Activity</h3>
-                                    <span>Latest Added</span>
-                                </div>                                    
-                                <ul class="panel-controls" style="margin-top: 2px;">
-                                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-plus"></span></a></li>
-                                    <li><a href="#" class="panel-refresh"><span class="fa fa-list"></span></a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>                                        
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                            <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                        </ul>                                        
-                                    </li>                                        
-                                </ul>                                    
-                            </div>                                
-                            <div class="panel-body padding-0">
-                                <div>
-                                    <ul class="list-group border-bottom">
-                                        <li class="list-group-item">car 1</li>
-                                        <li class="list-group-item">car 2</li>
-                                       
-                                    </ul>   
-                                </div>
-                                <div class="chart-holder" id="dashboard-bar-1" >
-  <p:chart type="pie" model="#{chartManagedBean.pieModel2}" style="width:300px;height:150px" />    
-                                </div>
-                            </div>                                    
-                        </div>
-
-                        <!-- END USERS ACTIVITY BLOCK -->
-
-                    </div>
-                     <div class="col-md-4">
-
-                        <!-- START USERS ACTIVITY BLOCK -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title-box">
-                                    <h3>User Activity</h3>
-                                    <span>Register vs Active</span>
-                                </div>                                    
-                                <ul class="panel-controls" style="margin-top: 2px;">
-                                    <li><a href="#" class="panel-refresh"><span class="fa fa-list"></span></a></li>                                     
-                                </ul>                                    
-                            </div>                                
-                            <div class="panel-body padding-0">
-                                
-                                <div class="chart-holder" id="dashboard-bar-1" >
-  <p:chart type="pie" model="#{chartManagedBean.pieModel2}" style="width:300px;height:150px" />    
-                                </div>
-                            </div>                                    
-                        </div>
-
-                        <!-- END USERS ACTIVITY BLOCK -->
-
-                    </div>
-                </div>
-
-              
-
-                <!-- START DASHBOARD CHART -->
-                                 
-                <!-- END DASHBOARD CHART -->
-
-            </div>
-            <!-- END PAGE CONTENT WRAPPER -->                                
-
-            <!-- END PAGE CONTENT -->
-
-            <!-- END PAGE CONTAINER -->
-
-            <!-- MESSAGE BOX-->
-
+            
+            <p:panelGrid columns="3"> 
+   <p:panelGrid columns="2">
+    <f:facet name="header">
+        <p:graphicImage name="img/sp.jpg"  width="200px" />
+    </f:facet>
+ 
+   <h:outputLink value="ShowServiceProviders.xhtml" >Show Service Providers</h:outputLink>
+                       
+</p:panelGrid>
+             <p:panelGrid columns="2">
+    <f:facet name="header">
+        <p:graphicImage name="img/users.png"  width="200px" />
+    </f:facet>
+ 
+   <h:outputLink value="ShowUsers.xhtml">Show Users</h:outputLink>
+                     
+</p:panelGrid>
+                
+                 <p:panelGrid columns="2">
+    <f:facet name="header">
+        <p:graphicImage name="img/cars.png"  width="200px" />
+    </f:facet>
+ 
+    <h:outputLink value="ShowVehicles.xhtml">Show Vehicles</h:outputLink>
+                                           
+</p:panelGrid>
+                </p:panelGrid>
         </ui:define>
     </ui:composition>
 

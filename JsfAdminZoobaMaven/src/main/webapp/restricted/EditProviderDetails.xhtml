@@ -332,11 +332,16 @@
                                                                 <f:selectItems value="#{editProvider.getDays()}" />
                                                             </p:selectCheckboxMenu>
                                                             <h:outputText value="From  " style="font-size: 16px"/>
-                                                            <pe:timePicker value="#{editProvider.from}" widgetVar="spinnerTimeWidget"  
+                                                            <pe:timePicker id="fromdate" value="#{editProvider.from}" widgetVar="spinnerTimeWidget"  
                                                                            label="Spinner time picker"/>
                                                             <h:outputText value="to  " style="font-size: 16px"/>
-                                                            <pe:timePicker value="#{editProvider.to}" widgetVar="spinnerTimeWidget"  
-                                                                           label="Spinner time picker"/>
+                                                            <pe:timePicker id=" todate" value="#{editProvider.to}" widgetVar="spinnerTimeWidget"  
+                                                                           label="Spinner time picker">
+                                                                <f:validator validatorId="dateRangeValidator" />
+                                                                <f:attribute name="fromDate" value="#{editProvider.from}" />
+                                                                 <f:ajax event="blur" render="msg11" />
+                                                            </pe:timePicker>
+                                                            <h:message id="msg11" for="todate"/>
                                                         </h:panelGrid>
                                                     </div>   
                                                 </div>

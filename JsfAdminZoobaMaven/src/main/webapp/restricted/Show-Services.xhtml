@@ -17,7 +17,7 @@
             <p:dataTable var="service" value="#{services.services}" paginator="true" rows="10" widgetVar="usersTable"
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
             
-                <p:column headerText="User Name" filterBy="#{service.name}" filterStyle="display:none" filterMatchMode="contains">
+                <p:column headerText="Service Name" filterBy="#{service.name}" filterStyle="display:none" filterMatchMode="contains">
                   <h:outputText value="#{service.name}" />
              </p:column> 
               
