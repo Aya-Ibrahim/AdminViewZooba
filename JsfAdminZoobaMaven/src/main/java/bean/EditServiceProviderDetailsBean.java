@@ -14,9 +14,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojo.Address;
 import pojo.Days;
 import pojo.Make;
@@ -248,12 +250,16 @@ public class EditServiceProviderDetailsBean {
 
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertAddressForServiceProvider(address);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Address", "Address Inserted"));
     }
 
     public void insertPhone() {
         serviceProviderPhone = new ServiceProviderPhone(serviceProvider, phone);
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertPhoneForServiiceProvider(serviceProviderPhone);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Phone", "Phone Inserted"));
     }
 
     public List<String> getMakes() {
@@ -268,6 +274,8 @@ public class EditServiceProviderDetailsBean {
     public void insertMakes() {
         DataLayer dataLayer = new DataLayer();
         dataLayer.getMakesFromStringArray(selectedMakes, serviceProvider);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Makes", "Makes Inserted"));
     }
 
     public List<String> getDays() {
