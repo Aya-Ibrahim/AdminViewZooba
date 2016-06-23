@@ -23,8 +23,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -239,6 +241,8 @@ public class AddCarByServiceBean implements Serializable {
         Trim trim = new Trim(selectedTrim);
         vehicleModel = dataLayer.insertVehicle(make, model, year, trim);
         insertCarDetails();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Vehicle", "Vehicle Inserted"));
 
     }
 
@@ -301,6 +305,7 @@ public class AddCarByServiceBean implements Serializable {
     }
 
     public void insertAll() {
+        
         showYears();
         for (String year : myYears) {
             selectedYear = year;

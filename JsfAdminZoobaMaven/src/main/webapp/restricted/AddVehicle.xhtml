@@ -61,8 +61,8 @@
                                                         </h:selectOneMenu>
                                                     </h:panelGrid>
                                                     <p:separator />
-                                                    <p:commandButton value="Save" update="msgs" actionListener="#{dropDownService.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
-                                                    <p:commandButton value="insert All in WebService" update="msgs" actionListener="#{dropDownService.insertAll()}" icon="ui-icon-check" class="savebutton" immediate="true"/>
+                                                    <h:commandButton value="Save"  actionListener="#{dropDownService.insertVehicle()}"  class="savebutton" />
+                                                    <h:commandButton value="insert All in WebService"  actionListener="#{dropDownService.insertAll()}"  class="savebutton" immediate="true"/>
                                                 </p:panel>
                                             </h:form>
                                         </p:tab>
@@ -130,10 +130,11 @@
                                             </div>
                                             <p:message id="trimMessage" for="trim"/>
                                         </div>
-                                        <p:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}" icon="ui-icon-check" class="savebutton" />
-                                        <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" class="savebutton" />
+                                        <h:commandButton value="Submits" actionListener="#{serviceByInput.insertVehicle()}"  class="savebutton" />
+                               
                                     </div>
                                 </div>
+                                            <p:growl id="growl" showDetail="true" sticky="true" />
 
                             </div>
                         </h:form>
