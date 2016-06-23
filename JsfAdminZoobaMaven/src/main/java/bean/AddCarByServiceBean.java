@@ -305,8 +305,7 @@ public class AddCarByServiceBean implements Serializable {
     }
 
     public void insertAll() {
-         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Vehicle", "Vehicle Insertion is running at background"));
+        
         showYears();
         for (String year : myYears) {
             selectedYear = year;
