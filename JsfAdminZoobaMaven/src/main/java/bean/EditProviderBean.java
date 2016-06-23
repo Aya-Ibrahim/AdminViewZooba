@@ -300,7 +300,7 @@ public class EditProviderBean {
     public void insertSchedule() {
 
         DataLayer dataLayer = new DataLayer();
-        dataLayer.insertSchedule(selectedDays, serviceProvider, from, to);
+//        dataLayer.insertSchedule(da, serviceProvider);
 
     }
 

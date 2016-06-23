@@ -5,9 +5,15 @@
  */
 package bean;
 
+import DTO.DayAndTime;
+import DTO.ServiceAndTime;
 import facadePkg.DataLayer;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
@@ -47,6 +53,26 @@ public class EditServiceProviderDetailsBean {
     private Date to;
     private Date serviceFrom;
     private Date serviceTo;
+    private List<ServiceAndTime> serviceAndTimes;
+    private List<DayAndTime> dayAndTimes;
+    private int i;
+    private int y;
+
+    public List<DayAndTime> getDayAndTimes() {
+        return dayAndTimes;
+    }
+
+    public void setDayAndTimes(List<DayAndTime> dayAndTimes) {
+        this.dayAndTimes = dayAndTimes;
+    }
+
+    public List<ServiceAndTime> getServiceAndTimes() {
+        return serviceAndTimes;
+    }
+
+    public void setServiceAndTimes(List<ServiceAndTime> serviceAndTimes) {
+        this.serviceAndTimes = serviceAndTimes;
+    }
 
     public Date getServiceFrom() {
         return serviceFrom;
@@ -256,23 +282,69 @@ public class EditServiceProviderDetailsBean {
     public void insertSchedule() {
 
         DataLayer dataLayer = new DataLayer();
-        dataLayer.insertSchedule(selectedDays, serviceProvider, from, to);
+        dataLayer.insertSchedule(dayAndTimes, serviceProvider);
 
     }
 
     public List<String> getServices() {
-          List<String> returnedServices;
+        List<String> returnedServices;
         DataLayer dataLayer = new DataLayer();
         returnedServices = dataLayer.getAllServicesAsString();
         return returnedServices;
     }
 
+    public void addToDayList() {
+        for (String dayName : selectedDays) {
+            DayAndTime dayAndTime = new DayAndTime(dayName, from, to, y++);
+            if (!dayAndTimes.contains(dayAndTime)) {
+                dayAndTimes.add(dayAndTime);
+            }
+        }
+
+    }
+
+    public void deleteFromDayList(int index) {
+        Iterator<DayAndTime> list = dayAndTimes.iterator();
+
+        while (list.hasNext()) {
+
+            DayAndTime value = list.next();
+            if (value.getIndex() == index) {
+                list.remove();
+            }
+        }
+    }
+
+    public void addToServiceList() {
+
+        for (String serviceName : selectedServices) {
+            ServiceAndTime serviceAndTime = new ServiceAndTime(serviceName, serviceFrom, serviceTo, i++);
+            if (!serviceAndTimes.contains(serviceAndTime)) {
+                serviceAndTimes.add(serviceAndTime);
+            }
+        }
+    }
+
+    public void deleteFromServiceList(int index) {
+        Iterator<ServiceAndTime> list = serviceAndTimes.iterator();
+
+        while (list.hasNext()) {
+
+            ServiceAndTime value = list.next();
+            if (value.getIndex() == index) {
+                list.remove();
+            }
+        }
+    }
+
     public void insertServices() {
         DataLayer dataLayer = new DataLayer();
-        dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider, serviceFrom, serviceTo);
+        dataLayer.setServicesForServiceProvider(serviceAndTimes, serviceProvider);
     }
 
     public void initialize() {
+        serviceAndTimes = new ArrayList<>();
+        dayAndTimes = new ArrayList<>();
         address = null;
         make = null;
         day = null;

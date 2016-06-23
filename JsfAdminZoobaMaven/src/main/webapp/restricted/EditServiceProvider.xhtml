@@ -14,7 +14,7 @@
                     height: 10px;
                 }
             </style>
-             <ul class="breadcrumb">
+            <ul class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Service Provider</a></li>
                 <li><a href="#">Edit</a></li>
@@ -320,7 +320,7 @@
                                 </h:form>
                             </p:tab>
                             <p:tab title="Schedule Form">
-                                <h:form>
+                                <h:form prependId="false">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h6>Schedule</h6>
@@ -343,7 +343,18 @@
                                                             <pe:timePicker value="#{enterProviderDetailsBean.to}" widgetVar="spinnerTimeWidget"  
                                                                            label="Spinner time picker"/>
                                                         </h:panelGrid>
-                                                    </div>   
+                                                    </div> 
+                                                    <br/>  <p:commandButton value="Add to Type List" update="displayDays" action="#{enterProviderDetailsBean.addToDayList}"/>
+                                                    <p:outputPanel id="displayDays" style="width: 500px; padding-left:5px;margin-top:10px">
+                                                        <p:dataList value="#{enterProviderDetailsBean.dayAndTimes}" var="dayAndTime" emptyMessage="Nothing to insert">
+                                                            <p:column>
+                                                                #{dayAndTime.toString()}
+                                                            </p:column>
+                                                            <p:column>
+                                                                <p:commandButton value="X" update="displayDays" action="#{enterProviderDetailsBean.deleteFromDayList(dayAndTime.index)}" />                                                       
+                                                            </p:column>
+                                                        </p:dataList>
+                                                    </p:outputPanel>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +365,7 @@
                                 </h:form>
                             </p:tab>
                             <p:tab title="Supported Services">
-                                <h:form>
+                                <h:form prependId="false">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h6>Supported Services</h6>
@@ -377,7 +388,18 @@
                                                             <pe:timePicker value="#{enterProviderDetailsBean.serviceTo}" widgetVar="spinnerTimeWidget"  
                                                                            label="Spinner time picker"/>
                                                         </h:panelGrid>
-                                                    </div>   
+                                                    </div>
+                                                    <br/>  <p:commandButton value="Add to Type List" update="displayService" action="#{enterProviderDetailsBean.addToServiceList}"/>
+                                                    <p:outputPanel id="displayService" style="width: 500px; padding-left:5px;margin-top:10px">
+                                                        <p:dataList value="#{enterProviderDetailsBean.serviceAndTimes}" var="serviceAndTime" emptyMessage="Nothing to insert">
+                                                            <p:column>
+                                                                #{serviceAndTime.toString()}
+                                                            </p:column>
+                                                            <p:column>
+                                                                <p:commandButton value="X" update="displayService" action="#{enterProviderDetailsBean.deleteFromServiceList(serviceAndTime.index)}" />                                                       
+                                                            </p:column>
+                                                        </p:dataList>
+                                                    </p:outputPanel>
                                                 </div>
                                             </div>
                                         </div>
