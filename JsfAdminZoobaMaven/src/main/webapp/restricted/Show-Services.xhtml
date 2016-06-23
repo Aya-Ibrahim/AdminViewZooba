@@ -1,31 +1,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/template/AdminTemplate.xhtml">
-                <!-- END X-NAVIGATION VERTICAL -->                     
+        <!-- END X-NAVIGATION VERTICAL -->                     
 
-                <ui:define name="myBody">
-                    
-                  <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-            </ul>  
-        <h:form id="form">
-            <p:dataTable var="service" value="#{services.services}" paginator="true" rows="10" widgetVar="usersTable"
-                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-            
-                <p:column headerText="Service Name" filterBy="#{service.name}" filterStyle="display:none" filterMatchMode="contains">
-                  <h:outputText value="#{service.name}" />
-             </p:column> 
-              
-        </p:dataTable>    
-           
-                
-   </h:form>
-                </ui:define>
+        <ui:define name="myBody">
+            <h:body onload="#{services.onLoad()}">
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                </ul>  
+                <h:form id="form">
+                    <p:dataTable var="service" value="#{services.services}" paginator="true" rows="10" widgetVar="usersTable"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+
+                        <p:column headerText="Service Name" filterBy="#{service.name}" filterStyle="display:none" filterMatchMode="contains">
+                            <h:outputText value="#{service.name}" />
+                        </p:column> 
+
+                    </p:dataTable>    
+                </h:form>
+            </h:body>
+        </ui:define>
 
     </ui:composition>
 </html>
