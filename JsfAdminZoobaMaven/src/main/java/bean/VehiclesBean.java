@@ -9,6 +9,7 @@ import facadePkg.DataLayer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -69,10 +70,12 @@ public class VehiclesBean implements Serializable {
 
         boolean flag = handler.deleteVehicle(id);
         if (!flag) {
-//          FacesContext context = FacesContext.getCurrentInstance();
-//          context.addMessage( null, new FacesMessage( "This vehicle model is associated to a car" ));  
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Delete", "This vehicle model is associated to a car"));
         } else {
             model = new ListDataModel<>(handler.getVehicles());
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Delete", "Vehicle Deleted"));
         }
     }
 
@@ -89,9 +92,11 @@ public class VehiclesBean implements Serializable {
         handler.updateModelFeatureValues(m);
         int n = Integer.parseInt(action);
         list = new ListDataModel<>(handler.showFeatures(n));
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Edit", "Feature updated"));
     }
 
     public void onload() {
-        model=new ListDataModel<>(handler.getVehicles());
+        model = new ListDataModel<>(handler.getVehicles());
     }
 }

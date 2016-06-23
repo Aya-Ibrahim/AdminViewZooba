@@ -10,56 +10,56 @@
             <h:body onload="#{vehicle.onload()}">
                 <!-- END BREADCRUMB -->                                                
 
-     <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Vehicles</a></li>
-            </ul>
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Vehicles</a></li>
+                </ul>
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-                <div class="row">
-                    <div class="col-md-12">
-                  
-                <h:form id="form">
-                    <p:dataTable var="car" value="#{vehicle.model}" paginator="true" rows="10" widgetVar="carTable"
-                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
-  <f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Search :" />
-                <p:inputText id="globalFilter" onkeyup="PF('carTable').filter()" style="width:150px" placeholder="Enter keyword"/>
-            </p:outputPanel>
-        </f:facet>
-                        <p:column headerText="Manufacturer" filterBy="#{car.model.make.name}" filterStyle="display:none" filterMatchMode="startsWith">
-                            <h:outputText value="#{car.model.make.name}" />
-                        </p:column>
-                        <p:column headerText="Model" filterBy="#{car.model.name}" filterStyle="display:none" filterMatchMode="startsWith">
-                            <h:outputText value="#{car.model.name}" />
-                        </p:column>
-                        <p:column headerText="Year" filterBy="#{car.year.name}" filterStyle="display:none" filterMatchMode="startsWith">
-                            <h:outputText value="#{car.year.name}" />
-                        </p:column>
-                        <p:column headerText="Trim" filterBy="#{car.trim.name}" filterStyle="display:none" filterMatchMode="startsWith">
-                            <h:outputText value="#{car.trim.name}" />
-                        </p:column>
-                        <p:column headerText="Show Features">
-                            <h:commandButton value="Show Features" action="#{vehicle.showPage}">
-                                <f:param name="id" value="#{car.id}"/>
-                            </h:commandButton>
-                        </p:column>
-                        <p:column headerText="Edit">
-                            <h:commandButton value="Edit"  action="#{vehiclemodel.goToEdit}">
-                                <f:param name="id" value="#{car.id}"/>
-                            </h:commandButton>
-                        </p:column>
-                        <p:column headerText="Delete">
-                            <h:commandButton value="Delete" 
-                                             action="#{vehicle.deleteVehicle(car.id)}">
-                            </h:commandButton>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                        </p:column>   
-                    </p:dataTable>
-                </h:form>
+                            <h:form id="form">
+                                <p:dataTable var="car" value="#{vehicle.model}" paginator="true" rows="10" widgetVar="carTable"
+                                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+                                    <f:facet name="header">
+                                        <p:outputPanel>
+                                            <h:outputText value="Search :" />
+                                            <p:inputText id="globalFilter" onkeyup="PF('carTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+                                        </p:outputPanel>
+                                    </f:facet>
+                                    <p:column headerText="Manufacturer" filterBy="#{car.model.make.name}" filterStyle="display:none" filterMatchMode="startsWith">
+                                        <h:outputText value="#{car.model.make.name}" />
+                                    </p:column>
+                                    <p:column headerText="Model" filterBy="#{car.model.name}" filterStyle="display:none" filterMatchMode="startsWith">
+                                        <h:outputText value="#{car.model.name}" />
+                                    </p:column>
+                                    <p:column headerText="Year" filterBy="#{car.year.name}" filterStyle="display:none" filterMatchMode="startsWith">
+                                        <h:outputText value="#{car.year.name}" />
+                                    </p:column>
+                                    <p:column headerText="Trim" filterBy="#{car.trim.name}" filterStyle="display:none" filterMatchMode="startsWith">
+                                        <h:outputText value="#{car.trim.name}" />
+                                    </p:column>
+                                    <p:column headerText="Show Features">
+                                        <h:commandButton value="Show Features" action="#{vehicle.showPage}">
+                                            <f:param name="id" value="#{car.id}"/>
+                                        </h:commandButton>
+                                    </p:column>
+                                    <p:column headerText="Edit">
+                                        <h:commandButton value="Edit"  action="#{vehiclemodel.goToEdit}">
+                                            <f:param name="id" value="#{car.id}"/>
+                                        </h:commandButton>
+                                    </p:column>
+                                    <p:column headerText="Delete">
+                                        <h:commandButton value="Delete" 
+                                                         action="#{vehicle.deleteVehicle(car.id)}">
+                                        </h:commandButton>
+                                        <p:growl id="growl" showDetail="true" sticky="true" />
+                                    </p:column>   
+                                </p:dataTable>
+                            </h:form>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->                                                 
             </h:body>
