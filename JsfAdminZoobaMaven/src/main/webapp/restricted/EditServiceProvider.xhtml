@@ -14,7 +14,7 @@
                     height: 10px;
                 }
             </style>
-             <ul class="breadcrumb">
+            <ul class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Service Provider</a></li>
                 <li><a href="#">Edit</a></li>
@@ -257,7 +257,9 @@
                                             </p:column>
                                         </p:panelGrid>
                                         <div class="panel-footer">
-                                            <p:commandButton value="Save Address" class="btn btn-primary" action="#{enterProviderDetailsBean.insertAddress()}" />
+                                            <h:commandButton value="Save Address" class="btn btn-primary" action="#{enterProviderDetailsBean.insertAddress()}" />
+                                            <p:growl id="growl" showDetail="true" sticky="true" />
+
                                         </div>
                                     </div>
                                 </h:form>
@@ -284,7 +286,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <p:commandButton value="Save Phone" class="btn btn-primary " action="#{enterProviderDetailsBean.insertPhone()}" />
+                                            <h:commandButton value="Save Phone" class="btn btn-primary " action="#{enterProviderDetailsBean.insertPhone()}" />
                                         </div>
                                     </div>
                                 </h:form>
@@ -314,7 +316,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <p:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{enterProviderDetailsBean.insertMakes()}" />
+                                            <h:commandButton id="phonebtn" value="Save Makes" class="btn btn-primary " action="#{enterProviderDetailsBean.insertMakes()}" />
                                         </div>
                                     </div>
                                 </h:form>
@@ -348,7 +350,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <p:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{enterProviderDetailsBean.insertSchedule()}" />
+                                            <h:commandButton id="schedulebtn" value="Save Schedule" class="btn btn-primary " action="#{enterProviderDetailsBean.insertSchedule()}" />
                                         </div>
                                     </div>
                                 </h:form>
@@ -382,7 +384,7 @@
                                             </div>
                                         </div>
                                         <div class="panel-footer">
-                                            <p:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{enterProviderDetailsBean.insertServices()}" />
+                                            <h:commandButton id="servicebtn" value="Save service" class="btn btn-primary " action="#{enterProviderDetailsBean.insertServices()}" />
                                         </div>
                                     </div>
                                 </h:form>

@@ -8,9 +8,11 @@ package bean;
 import facadePkg.DataLayer;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import pojo.Address;
 import pojo.Days;
 import pojo.Make;
@@ -222,12 +224,16 @@ public class EditServiceProviderDetailsBean {
 
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertAddressForServiceProvider(address);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Address", "Address Inserted"));
     }
 
     public void insertPhone() {
         serviceProviderPhone = new ServiceProviderPhone(serviceProvider, phone);
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertPhoneForServiiceProvider(serviceProviderPhone);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Phone", "Phone Inserted"));
     }
 
     public List<String> getMakes() {
@@ -242,6 +248,8 @@ public class EditServiceProviderDetailsBean {
     public void insertMakes() {
         DataLayer dataLayer = new DataLayer();
         dataLayer.getMakesFromStringArray(selectedMakes, serviceProvider);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Makes", "Makes Inserted"));
     }
 
     public List<String> getDays() {
@@ -257,11 +265,12 @@ public class EditServiceProviderDetailsBean {
 
         DataLayer dataLayer = new DataLayer();
         dataLayer.insertSchedule(selectedDays, serviceProvider, from, to);
-
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Scedule", "Scedule Inserted"));
     }
 
     public List<String> getServices() {
-          List<String> returnedServices;
+        List<String> returnedServices;
         DataLayer dataLayer = new DataLayer();
         returnedServices = dataLayer.getAllServicesAsString();
         return returnedServices;
@@ -270,6 +279,8 @@ public class EditServiceProviderDetailsBean {
     public void insertServices() {
         DataLayer dataLayer = new DataLayer();
         dataLayer.setServicesForServiceProvider(selectedServices, serviceProvider, serviceFrom, serviceTo);
+         FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Services", "Services Inserted"));
     }
 
     public void initialize() {
