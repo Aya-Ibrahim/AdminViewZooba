@@ -32,10 +32,10 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>                               
                                                     <p:autoComplete  id="year" value="#{a.year.name}" completeMethod="#{serviceByInput.getYears}" required="true" requiredMessage="Year must be inserted">
-                                                    <f:ajax event="blur" render="yearMessage" />
-                                                </p:autoComplete>
-                                            </div>                                            
-                                            <p:message id="yearMessage" for="year"/>
+                                                        <f:ajax event="blur" render="yearMessage" />
+                                                    </p:autoComplete>
+                                                </div>                                            
+                                                <p:message id="yearMessage" for="year"/>
                                             </div>
                                         </div>
 
@@ -45,7 +45,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
                                                     <p:inputText id="make" value="#{a.model.make.name}" type="text" required="true" requiredMessage="Make must be inserted">
-                                                    <f:ajax event="blur" render="makeMessage" />
+                                                        <f:ajax event="blur" render="makeMessage" />
                                                     </p:inputText>
                                                 </div>            
                                                 <p:message id="makeMessage" for="make"/>
@@ -58,7 +58,7 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                     <p:inputText id="model" value="#{a.model.name}" type="text" required="true" requiredMessage="Model must be inserted">
-                                                    <f:ajax event="blur" render="modelMessage" />
+                                                        <f:ajax event="blur" render="modelMessage" />
                                                     </p:inputText>
                                                 </div>
                                                 <p:message id="modelMessage" for="model"/>
@@ -70,13 +70,15 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                     <p:inputText id="trim" type="text" value="#{a.trim.name}" required="true" requiredMessage="Trim must be inserted"> 
-                                                    <f:ajax event="blur" render="trimMessage" />
+                                                        <f:ajax event="blur" render="trimMessage" />
                                                     </p:inputText>
                                                 </div>
                                                 <p:message id="trimMessage" for="trim"/>
                                             </div>
-                                            <p:commandButton value="Edit" actionListener="#{vehiclemodel.updateVehicleModel(a)}" icon="ui-icon-check" />
+                                            <h:commandButton value="Edit" actionListener="#{vehiclemodel.updateVehicleModel(a)}"  />
                                             <p:commandButton value="sendMail" actionListener="#{dropDownService.sendMail()}" icon="ui-icon-check" />
+                                            <p:growl id="growl" showDetail="true" sticky="true" />
+
                                         </div>
                                     </div>
                                     <div class="panel-footer">

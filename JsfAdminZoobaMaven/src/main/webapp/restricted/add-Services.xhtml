@@ -8,8 +8,8 @@
     <ui:composition template="../template/AdminTemplate.xhtml">
         <!-- END X-NAVIGATION VERTICAL -->                     
         <ui:define name="myBody">
-         
-     <ul class="breadcrumb">
+
+            <ul class="breadcrumb">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Services</a></li>
             </ul>
@@ -63,8 +63,7 @@
                                                                 #{typeAndUnit.typeName} : #{typeAndUnit.unitName}
                                                             </p:column>
                                                             <p:column>
-                                                                <h:commandButton value="x"  action="#{addServicesBean.deleteFromTypeList(typeAndUnit.index)}"/>
-
+                                                                <h:commandButton value="x"  action="#{addServicesBean.deleteFromTypeList(typeAndUnit.index)}"/>                                                        
                                                             </p:column>
                                                         </p:dataList>
                                                     </p:outputPanel>
@@ -83,7 +82,8 @@
                                     </div>
                                 </div>
                                 <div class="" style="align-content: center">
-                                    <p:commandButton value="Save Service" class="btn btn-primary " action="#{addServicesBean.insertService()}" />
+                                    <h:commandButton value="Save Service" class="btn btn-primary " action="#{addServicesBean.insertService()}"/>
+                                    <p:growl id="growl" showDetail="true" sticky="true" />
                                 </div>
                             </div>
                         </h:form>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </ui:define>
-        
+
     </ui:composition>
 
 </html>

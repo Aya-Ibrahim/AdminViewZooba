@@ -11,8 +11,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -80,7 +82,8 @@ public class ServicesBean implements Serializable {
         DataLayer dataLayer = new DataLayer();
 
         dataLayer.insertService(name, typeAndUnits);
-
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Service", "Service Added"));
     }
 
     public List<String> getUnits() {
