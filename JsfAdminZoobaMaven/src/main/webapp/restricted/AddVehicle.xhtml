@@ -32,7 +32,7 @@
                                                 <p:panel>
                                                     <h:panelGrid columns="2" >
                                                         <p:outputLabel for="years" value="Year:   " />
-                                                        <h:selectOneMenu id="years" value="#{dropDownService.selectedYear}" onchange="loadAllSelect" >
+                                                        <h:selectOneMenu id="years" value="#{dropDownService.selectedYear}">
                                                             <p:ajax listener="#{dropDownService.showMakes()}" update="makes" />
                                                             <f:selectItem itemLabel="Select Year" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.myYears}" var="year"
@@ -40,28 +40,29 @@
                                                         </h:selectOneMenu>
 
                                                         <p:outputLabel for="makes" value="Make:   " />
-                                                        <h:selectOneMenu id="makes" value="#{dropDownService.selectedMake}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');" >
+                                                        <h:selectOneMenu id="makes" value="#{dropDownService.selectedMake}" >
                                                             <p:ajax listener="#{dropDownService.showModels()}" update="models" />
                                                             <f:selectItem itemLabel="Select Make" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dMake}" var="make"
                                                                            itemLabel="#{make.make_display}" itemValue="#{model.make_display}"/>
                                                         </h:selectOneMenu>
                                                         <p:outputLabel for="models" value="Model:   " />
-                                                        <h:selectOneMenu id="models" value="#{dropDownService.selectedModel}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');" >
+                                                        <h:selectOneMenu id="models" value="#{dropDownService.selectedModel}"  >
                                                             <p:ajax listener="#{dropDownService.showTrims()}" update="trims" />
                                                             <f:selectItem itemLabel="Select Model" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dModel}"  var="model"
                                                                            itemLabel="#{model.model_name}" itemValue="#{model.model_name}"/>
                                                         </h:selectOneMenu>
                                                         <p:outputLabel for="trims" value="Trim:   " />
-                                                        <h:selectOneMenu id="trims" value="#{dropDownService.selectedTrim}" onchange="$('table .ui-helper-hidden-accessible').css('overflow', 'visible');">
+                                                        <h:selectOneMenu id="trims" value="#{dropDownService.selectedTrim}" >
+                                                            <p:ajax listener="#{dropDownService.showYears()}" update="trims" />
                                                             <f:selectItem itemLabel="Select Trim" itemValue="" noSelectionOption="true" />
                                                             <f:selectItems value="#{dropDownService.dTrim}" var="trim"
                                                                            itemLabel="#{trim.model_trim}" itemValue="#{trim.model_trim}"/>
                                                         </h:selectOneMenu>
                                                     </h:panelGrid>
                                                     <p:separator />
-                                                    <h:commandButton value="Save"  actionListener="#{dropDownService.insertVehicle()}"  class="savebutton" />
+                                                    <h:commandButton value="Save"  actionListener="#{dropDownService.insertVehicle()}"  class="savebutton" immediate="true"/>
                                                     <h:commandButton value="insert All in WebService"  actionListener="#{dropDownService.insertAll()}"  class="savebutton" immediate="true"/>
                                                 </p:panel>
                                             </h:form>
